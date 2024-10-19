@@ -7,18 +7,15 @@
 
 import Foundation
 
-// MARK: - Service Error
-
-enum ServiceError: Error {
-    case invalidURL(String)
-    case badResponse(Int)
-    case decodingError(String)
-    case networkError(String)
-}
-
 // MARK: - Service
 
-final class Service {
+protocol Service {
+    func load<T: Decodable>(target: Target) async throws -> T
+}
+
+// MARK: - ServiceImpl
+
+final class ServiceImpl: Service {
     
     // MARK: - Private property
     
@@ -51,7 +48,7 @@ final class Service {
         do {
             return try decoder.decode(T.self, from: data)
         } catch let error {
-            throw ServiceError.decodingError("Decoding error for \(T.self)")
+            throw ServiceError.decodingError("Decoding error for \(T.self), with \(error)")
         }
     }
     
@@ -66,11 +63,4 @@ final class Service {
         
         return url
     }
-}
-
-// MARK: - Target
-
-protocol Target {
-    var baseURL: String { get }
-    var path: String { get }
 }

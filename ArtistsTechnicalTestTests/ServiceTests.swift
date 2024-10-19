@@ -17,7 +17,7 @@ final class ServiceTests: XCTestCase {
     // MARK: - Setup
     
     override func setUp() {
-        sut = Service()
+        sut = ServiceImpl()
         super.setUp()
     }
     

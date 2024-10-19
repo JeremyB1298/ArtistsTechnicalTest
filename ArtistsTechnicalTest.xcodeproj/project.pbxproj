@@ -16,6 +16,8 @@
 		367FAFB72CC2C135006EF090 /* ArtistsTechnicalTestUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367FAFB62CC2C135006EF090 /* ArtistsTechnicalTestUITestsLaunchTests.swift */; };
 		367FAFCB2CC2C653006EF090 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367FAFCA2CC2C653006EF090 /* Service.swift */; };
 		367FAFCD2CC2C93C006EF090 /* ServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367FAFCC2CC2C93C006EF090 /* ServiceTests.swift */; };
+		367FAFCF2CC3DEC2006EF090 /* ServiceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367FAFCE2CC3DEC2006EF090 /* ServiceError.swift */; };
+		367FAFD12CC3DEE1006EF090 /* Target.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367FAFD02CC3DEE1006EF090 /* Target.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +51,8 @@
 		367FAFB62CC2C135006EF090 /* ArtistsTechnicalTestUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistsTechnicalTestUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		367FAFCA2CC2C653006EF090 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		367FAFCC2CC2C93C006EF090 /* ServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceTests.swift; sourceTree = "<group>"; };
+		367FAFCE2CC3DEC2006EF090 /* ServiceError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceError.swift; sourceTree = "<group>"; };
+		367FAFD02CC3DEE1006EF090 /* Target.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Target.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -179,6 +183,8 @@
 			isa = PBXGroup;
 			children = (
 				367FAFCA2CC2C653006EF090 /* Service.swift */,
+				367FAFCE2CC3DEC2006EF090 /* ServiceError.swift */,
+				367FAFD02CC3DEE1006EF090 /* Target.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -313,9 +319,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				367FAFCF2CC3DEC2006EF090 /* ServiceError.swift in Sources */,
 				367FAF942CC2C134006EF090 /* AppDelegate.swift in Sources */,
 				367FAF962CC2C134006EF090 /* SceneDelegate.swift in Sources */,
 				367FAFCB2CC2C653006EF090 /* Service.swift in Sources */,
+				367FAFD12CC3DEE1006EF090 /* Target.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
