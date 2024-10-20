@@ -9,6 +9,11 @@ import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
+    // MARK: - Private property
+    
+    private var appCoordinator: AppCoordinator!
+    private let factory: Factory = FactoryImpl()
+    
     // MARK: - Public property
     
     var window: UIWindow?
@@ -20,12 +25,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         window = UIWindow(windowScene: windowScene)
         
-        let viewController = UIViewController()
-        viewController.view.backgroundColor = .blue
-        let navigationController = UINavigationController(rootViewController: viewController)
+        let navigationController = UINavigationController()
         
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
+        
+        appCoordinator = AppCoordinator(navigationController: navigationController, factory: factory)
+        appCoordinator.start()
     }
     
     func sceneDidDisconnect(_ scene: UIScene) {

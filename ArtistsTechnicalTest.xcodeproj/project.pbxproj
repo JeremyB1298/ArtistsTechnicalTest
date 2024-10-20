@@ -37,6 +37,9 @@
 		367FB0052CC51FB3006EF090 /* FetchSelectedArtistsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367FB0042CC51FB3006EF090 /* FetchSelectedArtistsUseCase.swift */; };
 		367FB0072CC5201C006EF090 /* SelectArtistUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367FB0062CC5201C006EF090 /* SelectArtistUseCase.swift */; };
 		367FB0092CC52076006EF090 /* UnselectArtistUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367FB0082CC52076006EF090 /* UnselectArtistUseCase.swift */; };
+		367FB00D2CC52120006EF090 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367FB00C2CC52120006EF090 /* Coordinator.swift */; };
+		367FB00F2CC52159006EF090 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367FB00E2CC52159006EF090 /* AppCoordinator.swift */; };
+		367FB0112CC5221D006EF090 /* Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367FB0102CC5221D006EF090 /* Factory.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,6 +94,9 @@
 		367FB0042CC51FB3006EF090 /* FetchSelectedArtistsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchSelectedArtistsUseCase.swift; sourceTree = "<group>"; };
 		367FB0062CC5201C006EF090 /* SelectArtistUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectArtistUseCase.swift; sourceTree = "<group>"; };
 		367FB0082CC52076006EF090 /* UnselectArtistUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnselectArtistUseCase.swift; sourceTree = "<group>"; };
+		367FB00C2CC52120006EF090 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		367FB00E2CC52159006EF090 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		367FB0102CC5221D006EF090 /* Factory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Factory.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,13 +147,12 @@
 		367FAF922CC2C134006EF090 /* ArtistsTechnicalTest */ = {
 			isa = PBXGroup;
 			children = (
+				367FAFA12CC2C135006EF090 /* Info.plist */,
+				367FB00B2CC52108006EF090 /* Resources */,
 				367FAFF42CC3F408006EF090 /* Common */,
 				367FAFC92CC2C545006EF090 /* Network */,
 				367FAFC82CC2C522006EF090 /* Delegates */,
 				367FAFC32CC2C4E5006EF090 /* Features */,
-				367FAF9C2CC2C135006EF090 /* Assets.xcassets */,
-				367FAF9E2CC2C135006EF090 /* LaunchScreen.storyboard */,
-				367FAFA12CC2C135006EF090 /* Info.plist */,
 			);
 			path = ArtistsTechnicalTest;
 			sourceTree = "<group>";
@@ -341,8 +346,10 @@
 		367FAFF42CC3F408006EF090 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				367FB00A2CC520F9006EF090 /* Coordinators */,
 				367FAFF52CC3F428006EF090 /* AppError.swift */,
 				367FAFF72CC3F4D5006EF090 /* ErrorMapper.swift */,
+				367FB0102CC5221D006EF090 /* Factory.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -372,6 +379,24 @@
 				367FB0082CC52076006EF090 /* UnselectArtistUseCase.swift */,
 			);
 			path = UseCases;
+			sourceTree = "<group>";
+		};
+		367FB00A2CC520F9006EF090 /* Coordinators */ = {
+			isa = PBXGroup;
+			children = (
+				367FB00C2CC52120006EF090 /* Coordinator.swift */,
+				367FB00E2CC52159006EF090 /* AppCoordinator.swift */,
+			);
+			path = Coordinators;
+			sourceTree = "<group>";
+		};
+		367FB00B2CC52108006EF090 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				367FAF9C2CC2C135006EF090 /* Assets.xcassets */,
+				367FAF9E2CC2C135006EF090 /* LaunchScreen.storyboard */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -506,16 +531,19 @@
 			files = (
 				367FAFD92CC3E0B8006EF090 /* ArtistRepository.swift in Sources */,
 				367FAFCF2CC3DEC2006EF090 /* ServiceError.swift in Sources */,
+				367FB0112CC5221D006EF090 /* Factory.swift in Sources */,
 				367FAFE02CC3E173006EF090 /* ArtistRepositoryImpl.swift in Sources */,
 				367FAFE32CC3EAA6006EF090 /* ArtistTarget.swift in Sources */,
 				367FAFF62CC3F428006EF090 /* AppError.swift in Sources */,
 				367FAF942CC2C134006EF090 /* AppDelegate.swift in Sources */,
+				367FB00F2CC52159006EF090 /* AppCoordinator.swift in Sources */,
 				367FAFDC2CC3E0D1006EF090 /* Artist.swift in Sources */,
 				367FAFF82CC3F4D5006EF090 /* ErrorMapper.swift in Sources */,
 				367FAFD62CC3E084006EF090 /* SearchArtistsResultDTO.swift in Sources */,
 				367FAF962CC2C134006EF090 /* SceneDelegate.swift in Sources */,
 				367FB0052CC51FB3006EF090 /* FetchSelectedArtistsUseCase.swift in Sources */,
 				367FB0092CC52076006EF090 /* UnselectArtistUseCase.swift in Sources */,
+				367FB00D2CC52120006EF090 /* Coordinator.swift in Sources */,
 				367FAFCB2CC2C653006EF090 /* Service.swift in Sources */,
 				367FAFE62CC3ED8E006EF090 /* ArtistMapper.swift in Sources */,
 				367FAFD42CC3E036006EF090 /* ArtistDTO.swift in Sources */,
