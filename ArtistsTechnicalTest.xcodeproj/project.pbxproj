@@ -31,6 +31,8 @@
 		367FAFF32CC3F0EC006EF090 /* MockDecodableType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367FAFF22CC3F0EC006EF090 /* MockDecodableType.swift */; };
 		367FAFF62CC3F428006EF090 /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367FAFF52CC3F428006EF090 /* AppError.swift */; };
 		367FAFF82CC3F4D5006EF090 /* ErrorMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367FAFF72CC3F4D5006EF090 /* ErrorMapper.swift */; };
+		367FAFFB2CC4EF4D006EF090 /* ArtistDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367FAFFA2CC4EF4D006EF090 /* ArtistDataStore.swift */; };
+		367FB0002CC4F0A7006EF090 /* ArtistDataStoreImplTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367FAFFF2CC4F0A7006EF090 /* ArtistDataStoreImplTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +81,8 @@
 		367FAFF22CC3F0EC006EF090 /* MockDecodableType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDecodableType.swift; sourceTree = "<group>"; };
 		367FAFF52CC3F428006EF090 /* AppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
 		367FAFF72CC3F4D5006EF090 /* ErrorMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorMapper.swift; sourceTree = "<group>"; };
+		367FAFFA2CC4EF4D006EF090 /* ArtistDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistDataStore.swift; sourceTree = "<group>"; };
+		367FAFFF2CC4F0A7006EF090 /* ArtistDataStoreImplTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistDataStoreImplTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -181,6 +185,7 @@
 		367FAFC52CC2C4EE006EF090 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				367FAFF92CC4EF3A006EF090 /* DataStore */,
 				367FAFE42CC3ED83006EF090 /* Mapper */,
 				367FAFE12CC3EA95006EF090 /* Target */,
 				367FAFDE2CC3E12A006EF090 /* Repository */,
@@ -300,6 +305,7 @@
 		367FAFE92CC3EF97006EF090 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				367FAFFC2CC4F077006EF090 /* DataStore */,
 				367FAFEA2CC3EF9B006EF090 /* Repository */,
 			);
 			path = Data;
@@ -330,6 +336,22 @@
 				367FAFF72CC3F4D5006EF090 /* ErrorMapper.swift */,
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		367FAFF92CC4EF3A006EF090 /* DataStore */ = {
+			isa = PBXGroup;
+			children = (
+				367FAFFA2CC4EF4D006EF090 /* ArtistDataStore.swift */,
+			);
+			path = DataStore;
+			sourceTree = "<group>";
+		};
+		367FAFFC2CC4F077006EF090 /* DataStore */ = {
+			isa = PBXGroup;
+			children = (
+				367FAFFF2CC4F0A7006EF090 /* ArtistDataStoreImplTests.swift */,
+			);
+			path = DataStore;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -476,6 +498,7 @@
 				367FAFE62CC3ED8E006EF090 /* ArtistMapper.swift in Sources */,
 				367FAFD42CC3E036006EF090 /* ArtistDTO.swift in Sources */,
 				367FAFD12CC3DEE1006EF090 /* TargetType.swift in Sources */,
+				367FAFFB2CC4EF4D006EF090 /* ArtistDataStore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -488,6 +511,7 @@
 				367FAFAB2CC2C135006EF090 /* ArtistsTechnicalTestTests.swift in Sources */,
 				367FAFCD2CC2C93C006EF090 /* ServiceImplTests.swift in Sources */,
 				367FAFEF2CC3F039006EF090 /* MockURLProtocol.swift in Sources */,
+				367FB0002CC4F0A7006EF090 /* ArtistDataStoreImplTests.swift in Sources */,
 				367FAFF32CC3F0EC006EF090 /* MockDecodableType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

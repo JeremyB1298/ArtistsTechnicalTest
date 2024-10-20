@@ -6,7 +6,10 @@
 //
 
 /// A protocol defining the requirements for an artist repository.
-/// This protocol provides a method for fetching artist data based on a search query.
+/// This protocol provides methods for fetching and saving artist data.
 protocol ArtistRepository {
     func fetch(query: String) async throws -> [Artist]
+    func selectAndSave(artist: Artist) -> Artist
+    func unselectAndUnregister(artist: Artist) -> Artist
+    func fetchSelectedArtists() -> [Artist]
 }
