@@ -10,21 +10,35 @@ import Foundation
 // MARK: - Service
 
 protocol Service {
-    func load<T: Decodable>(target: Target) async throws -> T
+    func load<T: Decodable>(target: TargetType) async throws -> T
 }
 
 // MARK: - ServiceImpl
 
+/// A final implementation of the `Service` protocol that handles network requests.
+/// This class provides methods for loading resources from a specified target using a URL session.
 final class ServiceImpl: Service {
     
     // MARK: - Private property
     
-    private var session = URLSession.shared
+    private var session: URLSession
     private let validStatusCodes = 200...299
+    
+    // MARK: - Initializer
+    
+    init(session: URLSession = URLSession.shared) {
+        self.session = session
+    }
     
     // MARK: - Public method
     
-    func load<T: Decodable>(target: Target) async throws -> T {
+    /// Loads a resource from the given target and decodes it into the specified type.
+    /// - Parameter target: The target type defining the base URL and path for the request.
+    /// - Returns: A decoded object of type `T`, which conforms to `Decodable`.
+    /// - Throws: `ServiceError.networkError` if a network error occurs,
+    ///           `ServiceError.badResponse` if the response is not valid,
+    ///           or `ServiceError.decodingError` if the data cannot be decoded.
+    func load<T: Decodable>(target: TargetType) async throws -> T {
         let url = try buildUrl(target: target)
         let data: Data
         let response: URLResponse
@@ -54,7 +68,11 @@ final class ServiceImpl: Service {
     
     // MARK: - Private method
     
-    private func buildUrl(target: Target) throws -> URL {
+    /// Constructs a URL from the given target type.
+    /// - Parameter target: The target type defining the base URL and path.
+    /// - Returns: The constructed URL.
+    /// - Throws: `ServiceError.invalidURL` if the constructed URL is invalid.
+    private func buildUrl(target: TargetType) throws -> URL {
         let urlString = target.baseURL + target.path
         
         guard let url = URL(string: urlString) else {
