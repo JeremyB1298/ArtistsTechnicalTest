@@ -40,6 +40,7 @@
 		367FB00D2CC52120006EF090 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367FB00C2CC52120006EF090 /* Coordinator.swift */; };
 		367FB00F2CC52159006EF090 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367FB00E2CC52159006EF090 /* AppCoordinator.swift */; };
 		367FB0112CC5221D006EF090 /* Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367FB0102CC5221D006EF090 /* Factory.swift */; };
+		367FB0132CC5230A006EF090 /* SearchArtistsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367FB0122CC5230A006EF090 /* SearchArtistsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,6 +98,7 @@
 		367FB00C2CC52120006EF090 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		367FB00E2CC52159006EF090 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		367FB0102CC5221D006EF090 /* Factory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Factory.swift; sourceTree = "<group>"; };
+		367FB0122CC5230A006EF090 /* SearchArtistsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchArtistsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -220,6 +222,7 @@
 		367FAFC72CC2C4FF006EF090 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				367FB0122CC5230A006EF090 /* SearchArtistsViewController.swift */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -546,6 +549,7 @@
 				367FB00D2CC52120006EF090 /* Coordinator.swift in Sources */,
 				367FAFCB2CC2C653006EF090 /* Service.swift in Sources */,
 				367FAFE62CC3ED8E006EF090 /* ArtistMapper.swift in Sources */,
+				367FB0132CC5230A006EF090 /* SearchArtistsViewController.swift in Sources */,
 				367FAFD42CC3E036006EF090 /* ArtistDTO.swift in Sources */,
 				367FB0072CC5201C006EF090 /* SelectArtistUseCase.swift in Sources */,
 				367FAFD12CC3DEE1006EF090 /* TargetType.swift in Sources */,

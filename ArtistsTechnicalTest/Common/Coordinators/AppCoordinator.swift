@@ -27,7 +27,7 @@ final class AppCoordinator: Coordinator {
     // MARK: - Public method
     
     func start() {
-        let viewController = factory.makeArtistsViewController()
+        let viewController = factory.makeSearchArtistsViewController()
         navigationController.pushViewController(viewController, animated: false)
     }
     

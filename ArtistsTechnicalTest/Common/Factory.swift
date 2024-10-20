@@ -10,7 +10,7 @@ import UIKit
 // MARK: - Factory
 
 protocol Factory {
-    func makeArtistsViewController() -> UIViewController
+    func makeSearchArtistsViewController() -> UIViewController
 }
 
 // MARK: - FactoryImpl
@@ -19,8 +19,8 @@ final class FactoryImpl: Factory {
     
     // MARK: - Public method
     
-    func makeArtistsViewController() -> UIViewController {
-        let viewController = UIViewController()
+    func makeSearchArtistsViewController() -> UIViewController {
+        let viewController = SearchArtistsViewController()
         viewController.view.backgroundColor = .blue
         
         return viewController
