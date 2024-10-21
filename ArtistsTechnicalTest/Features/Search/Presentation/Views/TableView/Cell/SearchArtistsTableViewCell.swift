@@ -48,6 +48,7 @@ final class SearchArtistsTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
+        setupUI()
         setupViews()
         makeConstraints()
     }
@@ -75,6 +76,10 @@ final class SearchArtistsTableViewCell: UITableViewCell {
     }
     
     // MARK: - Private methods
+    
+    private func setupUI() {
+        selectionStyle = .none
+    }
     
     private func setupViews() {
         contentView.addSubview(searchArtistsTableViewCellView)

@@ -7,16 +7,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "6F5838E9-FC12-4045-BFB9-0B9E5A4D2984"
+            uuid = "47C578B1-D65A-4FC2-84D6-6A7085B0F52F"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "ArtistsTechnicalTest/Features/Search/Presentation/ViewController/SearchArtistsViewController.swift"
+            filePath = "ArtistsTechnicalTest/Features/Search/Presentation/Views/SearchArtistsView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "76"
-            endingLineNumber = "76"
-            landmarkName = "reloadData()"
+            startingLineNumber = "153"
+            endingLineNumber = "153"
+            landmarkName = "searchBar(_:textDidChange:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

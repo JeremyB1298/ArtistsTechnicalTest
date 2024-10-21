@@ -12,29 +12,26 @@ final class SearchArtistsViewController: UIViewController {
     // MARK: - Private properties
     
     private let viewModel: SearchArtistsViewModel
-    private lazy var searchBar: UISearchBar = {
-        let searchBar = UISearchBar()
-        searchBar.delegate = self
+    private lazy var contentView: (UIView & SearchArtistsView) = {
+        let view = SearchArtistsViewImpl()
+        view.setDataSource(dataSource: dataSource)
+        view.delegate = self
         
-        return searchBar
+        return view
     }()
-    private lazy var tableView: UITableView = {
-        let tableView = SearchArtistsTableView()
-        tableView.dataSource = dataSource
+    private lazy var dataSource: SearchArtistsTableViewDataSource = {
+        let dataSource = SearchArtistsTableViewDataSourceImpl()
+        dataSource.delegate = self
         
-        return tableView
+        return dataSource
     }()
-    private let dataSource: SearchArtistsTableViewDataSource
     
     // MARK: - Initializers
     
     init(viewModel: SearchArtistsViewModel) {
         self.viewModel = viewModel
-        dataSource = SearchArtistsTableViewDataSourceImpl()
         
         super.init(nibName: nil, bundle: nil)
-        
-        dataSource.delegate = self
     }
     
     required init?(coder: NSCoder) {
@@ -68,13 +65,14 @@ final class SearchArtistsViewController: UIViewController {
     }
     
     private func searchOnSuccess() {
-        reloadData()
+        let artist = viewModel.uiSearchArtists
+        reloadData(artists: artist)
     }
     
-    private func reloadData() {
-        let artists = viewModel.uiArtists
+    private func reloadData(artists: [ArtistUIModel]) {
+        let artists = artists
         dataSource.update(with: artists)
-        tableView.reloadData()
+        contentView.reloadData()
     }
     
     private func showAlert(error: AppError) {
@@ -100,49 +98,76 @@ final class SearchArtistsViewController: UIViewController {
     }
     
     private func setupViews() {
-        view.addSubview(searchBar)
-        view.addSubview(tableView)
+        view.addSubview(contentView)
     }
     
     private func makeConstraints() {
-        makeSearchBarConstraints()
-        makeTableViewConstraints()
-    }
-    
-    private func makeSearchBarConstraints() {
-        searchBar.translatesAutoresizingMaskIntoConstraints = false
+        contentView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate(
             [
-                searchBar.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor),
-                searchBar.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-                searchBar.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+                contentView.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor),
+                contentView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+                contentView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+                contentView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
             ]
         )
     }
     
-    private func makeTableViewConstraints() {
-        tableView.translatesAutoresizingMaskIntoConstraints = false
+    private func updateUIForResultsState() {
+        let artists = viewModel.uiSearchArtists
+        reloadData(artists: artists)
+        let artistsSelectedCount = viewModel.uiSelectedArtists.count
         
-        NSLayoutConstraint.activate(
-            [
-                tableView.topAnchor.constraint(equalTo: searchBar.bottomAnchor),
-                tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-                tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-                tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-            ]
-        )
+        let isEnabled = artistsSelectedCount != 0
+        let title: String
+        
+        if isEnabled {
+            title = "Show Selected (\(artistsSelectedCount))"
+        } else {
+            title = "0 Selected"
+        }
+        
+        contentView.updateShowButtonWith(title: title, isEnabled: isEnabled)
+    }
+    
+    private func updateUIForSelectedState() {
+        let resultArtistsCount = viewModel.uiSearchArtists.count
+        let artists: [ArtistUIModel] = viewModel.uiSelectedArtists
+        
+        reloadData(artists: artists)
+        
+        let title = "Show Results (\(resultArtistsCount))"
+        contentView.updateShowButtonWith(title: title, isEnabled: true)
+    }
+    
+    private func reloadUIWithCurrentState() {
+        switch viewModel.searchState {
+        case .results:
+            updateUIForResultsState()
+        case .selected:
+            updateUIForSelectedState()
+        }
     }
     
 }
 
 // MARK: - UISearchBarDelegate
 
-extension SearchArtistsViewController: UISearchBarDelegate {
+extension SearchArtistsViewController: SearchArtistsViewDelegate {
     
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        let query = searchText
+    func searchArtistsView(searchBarTextDidChange text: String) {
+        if viewModel.searchState == .selected {
+            viewModel.switchSearchState()
+            reloadUIWithCurrentState()
+        }
+        let query = text
         search(query: query)
+    }
+    
+    func searchArtistsViewDidSelectShow() {
+        viewModel.switchSearchState()
+        reloadUIWithCurrentState()
     }
     
 }
@@ -153,7 +178,7 @@ extension SearchArtistsViewController: SearchArtistsTableViewCellDelegate {
     
     func searchArtistsTableViewCell(didSelect id: Int, isSelected: Bool) {
         viewModel.updateSelectStatus(for: id, with: isSelected)
-        reloadData()
+        reloadUIWithCurrentState()
     }
     
 }

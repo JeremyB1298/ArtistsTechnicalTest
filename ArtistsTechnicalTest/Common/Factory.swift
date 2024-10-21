@@ -45,8 +45,15 @@ final class FactoryImpl: Factory {
         let searchArtistsUseCase = makeSearchArtistsUseCase()
         let selectArtistUseCase = makeSelectArtistUseCase()
         let deselectArtistUseCase = makeDeselectArtistUseCase()
+        let fetchSelectedArtistsUseCase = makeFetchSelectedArtistsUseCase()
         
-        return SearchArtistsViewModelImpl(searchArtistsUseCase: searchArtistsUseCase, mapper: artistUIMapper, selectArtistUseCase: selectArtistUseCase, deselectArtistUseCase: deselectArtistUseCase)
+        return SearchArtistsViewModelImpl(
+            searchArtistsUseCase: searchArtistsUseCase,
+            mapper: artistUIMapper,
+            selectArtistUseCase: selectArtistUseCase,
+            deselectArtistUseCase: deselectArtistUseCase,
+            fetchSelectedArtistsUseCase: fetchSelectedArtistsUseCase
+        )
     }
     
     private func makeSearchArtistsUseCase() -> SearchArtistsUseCase {
@@ -59,6 +66,10 @@ final class FactoryImpl: Factory {
     
     private func makeDeselectArtistUseCase() -> DeselectArtistUseCase {
         DeselectArtistUseCaseImpl(repository: artistRepository)
+    }
+    
+    private func makeFetchSelectedArtistsUseCase() -> FetchSelectedArtistsUseCase {
+        FetchSelectedArtistsUseCaseImpl(repository: artistRepository)
     }
     
 }
