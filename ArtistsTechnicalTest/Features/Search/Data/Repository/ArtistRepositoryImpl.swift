@@ -77,6 +77,10 @@ final class ArtistRepositoryImpl: ArtistRepository {
         dataStore.getSavedArtists()
     }
     
+    func resetSelectedArtists() {
+        dataStore.reset()
+    }
+    
     // MARK: - Private method
     
     /// Updates the selection status of fetched artists based on the saved artist IDs.

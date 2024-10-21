@@ -20,9 +20,11 @@ protocol SearchArtistsViewModel {
     var searchState: SearchState { get }
     var uiArtists: [ArtistUIModel] { get }
     var showCount: Int { get }
+    var isResetEnabled: Bool { get }
     func search(query: String, _ completion: @escaping (Result<Void, AppError>) -> Void)
     func updateSelectStatus(for id: Int, with isSelected: Bool)
     func switchSearchState()
+    func reset()
 }
 
 // MARK: - SearchArtistsViewModelImpl
@@ -35,6 +37,7 @@ final class SearchArtistsViewModelImpl: SearchArtistsViewModel {
     private let selectArtistUseCase: SelectArtistUseCase
     private let deselectArtistUseCase: DeselectArtistUseCase
     private let fetchSelectedArtistsUseCase: FetchSelectedArtistsUseCase
+    private let resetSelectedArtistsUseCase: ResetSelectedArtistsUseCase
     private let mapper: ArtistUIMapper
     private var searchArtists: [Artist] = []
     private var selectedArtists: [Artist] = []
@@ -58,6 +61,9 @@ final class SearchArtistsViewModelImpl: SearchArtistsViewModel {
             return searchArtists.count
         }
     }
+    var isResetEnabled: Bool {
+        !selectedArtists.isEmpty
+    }
     
     // MARK: - Initializer
     
@@ -66,13 +72,15 @@ final class SearchArtistsViewModelImpl: SearchArtistsViewModel {
         mapper: ArtistUIMapper,
         selectArtistUseCase: SelectArtistUseCase,
         deselectArtistUseCase: DeselectArtistUseCase,
-        fetchSelectedArtistsUseCase: FetchSelectedArtistsUseCase
+        fetchSelectedArtistsUseCase: FetchSelectedArtistsUseCase,
+        resetSelectedArtistsUseCase: ResetSelectedArtistsUseCase
     ) {
         self.searchArtistsUseCase = searchArtistsUseCase
         self.mapper = mapper
         self.selectArtistUseCase = selectArtistUseCase
         self.deselectArtistUseCase = deselectArtistUseCase
         self.fetchSelectedArtistsUseCase = fetchSelectedArtistsUseCase
+        self.resetSelectedArtistsUseCase = resetSelectedArtistsUseCase
     }
     
     // MARK: - Public methods
@@ -117,6 +125,13 @@ final class SearchArtistsViewModelImpl: SearchArtistsViewModel {
         case .selected:
             searchState = .results
         }
+    }
+    
+    func reset() {
+        resetSelectedArtistsUseCase.invoke()
+        searchState = .results
+        searchArtists = []
+        selectedArtists = []
     }
     
     // MARK: - Private methods

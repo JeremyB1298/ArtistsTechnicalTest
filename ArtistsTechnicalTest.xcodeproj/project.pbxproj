@@ -50,6 +50,7 @@
 		367FB02C2CC63708006EF090 /* SearchArtistsTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367FB02B2CC63708006EF090 /* SearchArtistsTableViewDataSource.swift */; };
 		367FB02E2CC64B22006EF090 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 367FB02D2CC64B22006EF090 /* Colors.xcassets */; };
 		367FB0302CC651C7006EF090 /* SearchArtistsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367FB02F2CC651C7006EF090 /* SearchArtistsView.swift */; };
+		367FB0342CC687B9006EF090 /* ResetSelectedArtistsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367FB0332CC687B9006EF090 /* ResetSelectedArtistsUseCase.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -117,6 +118,7 @@
 		367FB02B2CC63708006EF090 /* SearchArtistsTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchArtistsTableViewDataSource.swift; sourceTree = "<group>"; };
 		367FB02D2CC64B22006EF090 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		367FB02F2CC651C7006EF090 /* SearchArtistsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchArtistsView.swift; sourceTree = "<group>"; };
+		367FB0332CC687B9006EF090 /* ResetSelectedArtistsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetSelectedArtistsUseCase.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -402,6 +404,7 @@
 				367FB0042CC51FB3006EF090 /* FetchSelectedArtistsUseCase.swift */,
 				367FB0062CC5201C006EF090 /* SelectArtistUseCase.swift */,
 				367FB0082CC52076006EF090 /* UnselectArtistUseCase.swift */,
+				367FB0332CC687B9006EF090 /* ResetSelectedArtistsUseCase.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -641,6 +644,7 @@
 				367FB0272CC633DE006EF090 /* SearchArtistsTableViewCell.swift in Sources */,
 				367FB0242CC63392006EF090 /* SearchArtistsTableView.swift in Sources */,
 				367FB0182CC52370006EF090 /* SearchArtistsViewModel.swift in Sources */,
+				367FB0342CC687B9006EF090 /* ResetSelectedArtistsUseCase.swift in Sources */,
 				367FB0302CC651C7006EF090 /* SearchArtistsView.swift in Sources */,
 				367FAF962CC2C134006EF090 /* SceneDelegate.swift in Sources */,
 				367FB0052CC51FB3006EF090 /* FetchSelectedArtistsUseCase.swift in Sources */,

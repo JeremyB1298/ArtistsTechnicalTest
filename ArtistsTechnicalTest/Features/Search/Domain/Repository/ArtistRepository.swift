@@ -12,4 +12,5 @@ protocol ArtistRepository {
     func selectAndSave(artist: Artist) -> Artist
     func deselectAndUnregister(artist: Artist) -> Artist
     func fetchSelectedArtists() -> [Artist]
+    func resetSelectedArtists()
 }

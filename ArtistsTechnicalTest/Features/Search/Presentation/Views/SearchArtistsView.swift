@@ -12,6 +12,7 @@ import UIKit
 protocol SearchArtistsViewDelegate: AnyObject {
     func searchArtistsView(searchBarTextDidChange text: String)
     func searchArtistsViewDidSelectShow()
+    func searchArtistsViewDidTapOnReset()
 }
 
 // MARK: - SearchArtistsView
@@ -21,6 +22,8 @@ protocol SearchArtistsView {
     func setDataSource(dataSource: UITableViewDataSource)
     func reloadData()
     func updateShowButtonWith(title: String, isEnabled: Bool)
+    func updateResetButton(isHidden: Bool)
+    func resetSearchBar()
 }
 
 // MARK: - SearchArtistsViewImpl
@@ -35,6 +38,11 @@ final class SearchArtistsViewImpl: UIView, SearchArtistsView {
                 static let leading = 10.0
             }
         }
+        enum ResetButton {
+            enum Padding {
+                static let trailing = -10.0
+            }
+        }
     }
     
     // MARK: - Private properties
@@ -42,6 +50,7 @@ final class SearchArtistsViewImpl: UIView, SearchArtistsView {
     private lazy var searchBar: UISearchBar = {
         let searchBar = UISearchBar()
         searchBar.delegate = self
+        searchBar.placeholder = "Search an artist name..."
         
         return searchBar
     }()
@@ -53,6 +62,15 @@ final class SearchArtistsViewImpl: UIView, SearchArtistsView {
         button.setTitleColor(.tintColor, for: .normal)
         button.setTitleColor(.lightGray, for: .disabled)
         button.isEnabled = false
+        
+        return button
+    }()
+    private lazy var resetButton: UIButton = {
+        let button = UIButton()
+        button.addTarget(self, action: #selector(reset), for: .touchUpInside)
+        button.setTitle("Reset", for: .normal)
+        button.setTitleColor(.tintColor, for: .normal)
+        button.isHidden = true
         
         return button
     }()
@@ -89,7 +107,19 @@ final class SearchArtistsViewImpl: UIView, SearchArtistsView {
         showButton.isEnabled = isEnabled
     }
     
+    func updateResetButton(isHidden: Bool) {
+        resetButton.isHidden = isHidden
+    }
+    
+    func resetSearchBar() {
+        searchBar.text = nil
+    }
+    
     // MARK: Private methods
+    
+    @objc private func reset() {
+        delegate?.searchArtistsViewDidTapOnReset()
+    }
     
     @objc private func showAction() {
         delegate?.searchArtistsViewDidSelectShow()
@@ -99,11 +129,13 @@ final class SearchArtistsViewImpl: UIView, SearchArtistsView {
         addSubview(searchBar)
         addSubview(tableView)
         addSubview(showButton)
+        addSubview(resetButton)
     }
     
     private func makeConstraints() {
         makeSearchBarConstraints()
         makeShowButtonConstraints()
+        makeResetButtonConstraints()
         makeTableViewConstraints()
     }
     
@@ -126,6 +158,18 @@ final class SearchArtistsViewImpl: UIView, SearchArtistsView {
             [
                 showButton.topAnchor.constraint(equalTo: searchBar.bottomAnchor),
                 showButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Constants.ShowButton.Padding.leading)
+            ]
+        )
+    }
+    
+    private func makeResetButtonConstraints() {
+        resetButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate(
+            [
+                resetButton.topAnchor.constraint(equalTo: searchBar.bottomAnchor),
+                resetButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: Constants.ResetButton.Padding.trailing),
+                resetButton.bottomAnchor.constraint(equalTo: showButton.bottomAnchor)
             ]
         )
     }

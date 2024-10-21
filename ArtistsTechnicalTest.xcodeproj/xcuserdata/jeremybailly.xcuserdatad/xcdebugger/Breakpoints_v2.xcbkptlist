@@ -7,32 +7,32 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "47C578B1-D65A-4FC2-84D6-6A7085B0F52F"
+            uuid = "F2068ACD-3D90-448D-8CC5-2EEFD42A3022"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ArtistsTechnicalTest/Features/Search/Presentation/Views/SearchArtistsView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "153"
-            endingLineNumber = "153"
-            landmarkName = "searchBar(_:textDidChange:)"
+            startingLineNumber = "115"
+            endingLineNumber = "115"
+            landmarkName = "resetSearchBar()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "048107FC-4A65-4DDD-BC73-1DE2D65FDE05"
+            uuid = "8F42D5D5-D508-473F-ACF0-0A0E13F67F6A"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "ArtistsTechnicalTest/Features/Search/Presentation/ViewModel/SearchArtistsViewModel.swift"
+            filePath = "ArtistsTechnicalTest/Features/Search/Presentation/Views/SearchArtistsView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "144"
-            endingLineNumber = "144"
-            landmarkName = "fetchSelectedArtists()"
+            startingLineNumber = "197"
+            endingLineNumber = "197"
+            landmarkName = "searchBar(_:textDidChange:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

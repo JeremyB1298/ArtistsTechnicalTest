@@ -14,6 +14,7 @@ protocol ArtistDataStore {
     func removeArtist(id: Int)
     func getSavedArtistIds() -> [Int]
     func getSavedArtists() -> [Artist]
+    func reset()
 }
 
 // MARK: - ArtistDataStoreImpl
@@ -51,6 +52,10 @@ final class ArtistDataStoreImpl: ArtistDataStore {
     /// - Returns: An array of `Artist` objects that have been saved.
     func getSavedArtists() -> [Artist] {
         artistsSaved
+    }
+    
+    func reset() {
+        artistsSaved.removeAll()
     }
     
 }

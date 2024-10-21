@@ -65,12 +65,11 @@ final class SearchArtistsViewController: UIViewController {
     }
     
     private func searchOnSuccess() {
-        let artist = viewModel.uiArtists
-        reloadData(artists: artist)
+        reloadData()
     }
     
-    private func reloadData(artists: [ArtistUIModel]) {
-        let artists = artists
+    private func reloadData() {
+        let artists = viewModel.uiArtists
         dataSource.update(with: artists)
         contentView.reloadData()
     }
@@ -116,19 +115,19 @@ final class SearchArtistsViewController: UIViewController {
     
     private func reloadUIWithCurrentState() {
         let count = viewModel.showCount
-        let artists = viewModel.uiArtists
         
         switch viewModel.searchState {
         case .results:
-            updateUIForResultsState(count: count, artists: artists)
+            updateShowButtonUIForResultsState(count: count)
         case .selected:
-            updateUIForSelectedState(count: count, artists: artists)
+            updateShowButtonUIForSelectedState(count: count)
         }
+        updateResetUI()
+        
+        reloadData()
     }
     
-    private func updateUIForResultsState(count: Int, artists: [ArtistUIModel]) {
-        reloadData(artists: artists)
-        
+    private func updateShowButtonUIForResultsState(count: Int) {
         let isEnabled = count != 0
         let title: String
         
@@ -141,11 +140,14 @@ final class SearchArtistsViewController: UIViewController {
         contentView.updateShowButtonWith(title: title, isEnabled: isEnabled)
     }
     
-    private func updateUIForSelectedState(count: Int, artists: [ArtistUIModel]) {
-        reloadData(artists: artists)
-        
+    private func updateShowButtonUIForSelectedState(count: Int) {
         let title = "Show Results (\(count))"
         contentView.updateShowButtonWith(title: title, isEnabled: true)
+    }
+    
+    private func updateResetUI() {
+        let isHidden = !viewModel.isResetEnabled
+        contentView.updateResetButton(isHidden: isHidden)
     }
     
     private func updateUI(with query: String) {
@@ -164,11 +166,21 @@ final class SearchArtistsViewController: UIViewController {
         reloadUIWithCurrentState()
     }
     
+    private func reset() {
+        viewModel.reset()
+        contentView.resetSearchBar()
+        reloadUIWithCurrentState()
+    }
+    
 }
 
 // MARK: - UISearchBarDelegate
 
 extension SearchArtistsViewController: SearchArtistsViewDelegate {
+    
+    func searchArtistsViewDidTapOnReset() {
+        reset()
+    }
     
     func searchArtistsView(searchBarTextDidChange text: String) {
         updateUI(with: text)
