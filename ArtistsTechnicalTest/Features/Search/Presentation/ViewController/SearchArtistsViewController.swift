@@ -65,7 +65,7 @@ final class SearchArtistsViewController: UIViewController {
     }
     
     private func searchOnSuccess() {
-        let artist = viewModel.uiSearchArtists
+        let artist = viewModel.uiArtists
         reloadData(artists: artist)
     }
     
@@ -114,16 +114,26 @@ final class SearchArtistsViewController: UIViewController {
         )
     }
     
-    private func updateUIForResultsState() {
-        let artists = viewModel.uiSearchArtists
-        reloadData(artists: artists)
-        let artistsSelectedCount = viewModel.uiSelectedArtists.count
+    private func reloadUIWithCurrentState() {
+        let count = viewModel.showCount
+        let artists = viewModel.uiArtists
         
-        let isEnabled = artistsSelectedCount != 0
+        switch viewModel.searchState {
+        case .results:
+            updateUIForResultsState(count: count, artists: artists)
+        case .selected:
+            updateUIForSelectedState(count: count, artists: artists)
+        }
+    }
+    
+    private func updateUIForResultsState(count: Int, artists: [ArtistUIModel]) {
+        reloadData(artists: artists)
+        
+        let isEnabled = count != 0
         let title: String
         
         if isEnabled {
-            title = "Show Selected (\(artistsSelectedCount))"
+            title = "Show Selected (\(count))"
         } else {
             title = "0 Selected"
         }
@@ -131,23 +141,27 @@ final class SearchArtistsViewController: UIViewController {
         contentView.updateShowButtonWith(title: title, isEnabled: isEnabled)
     }
     
-    private func updateUIForSelectedState() {
-        let resultArtistsCount = viewModel.uiSearchArtists.count
-        let artists: [ArtistUIModel] = viewModel.uiSelectedArtists
-        
+    private func updateUIForSelectedState(count: Int, artists: [ArtistUIModel]) {
         reloadData(artists: artists)
         
-        let title = "Show Results (\(resultArtistsCount))"
+        let title = "Show Results (\(count))"
         contentView.updateShowButtonWith(title: title, isEnabled: true)
     }
     
-    private func reloadUIWithCurrentState() {
-        switch viewModel.searchState {
-        case .results:
-            updateUIForResultsState()
-        case .selected:
-            updateUIForSelectedState()
-        }
+    private func updateUI(with query: String) {
+        resetSearchState()
+        search(query: query)
+    }
+    
+    private func resetSearchState() {
+        guard viewModel.searchState == .selected else { return }
+        viewModel.switchSearchState()
+        reloadUIWithCurrentState()
+    }
+    
+    private func didSelectShow() {
+        viewModel.switchSearchState()
+        reloadUIWithCurrentState()
     }
     
 }
@@ -157,17 +171,11 @@ final class SearchArtistsViewController: UIViewController {
 extension SearchArtistsViewController: SearchArtistsViewDelegate {
     
     func searchArtistsView(searchBarTextDidChange text: String) {
-        if viewModel.searchState == .selected {
-            viewModel.switchSearchState()
-            reloadUIWithCurrentState()
-        }
-        let query = text
-        search(query: query)
+        updateUI(with: text)
     }
     
     func searchArtistsViewDidSelectShow() {
-        viewModel.switchSearchState()
-        reloadUIWithCurrentState()
+        didSelectShow()
     }
     
 }

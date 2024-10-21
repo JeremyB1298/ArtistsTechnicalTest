@@ -18,8 +18,8 @@ enum SearchState {
 
 protocol SearchArtistsViewModel {
     var searchState: SearchState { get }
-    var uiSearchArtists: [ArtistUIModel] { get }
-    var uiSelectedArtists: [ArtistUIModel] { get }
+    var uiArtists: [ArtistUIModel] { get }
+    var showCount: Int { get }
     func search(query: String, _ completion: @escaping (Result<Void, AppError>) -> Void)
     func updateSelectStatus(for id: Int, with isSelected: Bool)
     func switchSearchState()
@@ -41,9 +41,23 @@ final class SearchArtistsViewModelImpl: SearchArtistsViewModel {
     
     // MARK: - Public property
     
-    var uiSearchArtists: [ArtistUIModel] = []
-    var uiSelectedArtists: [ArtistUIModel] = []
+    var uiArtists: [ArtistUIModel] {
+        switch searchState {
+        case .results:
+            return searchArtists.map(mapper.map(artist:))
+        case .selected:
+            return selectedArtists.map(mapper.map(artist:))
+        }
+    }
     var searchState: SearchState = .results
+    var showCount: Int {
+        switch searchState {
+        case .results:
+            return selectedArtists.count
+        case .selected:
+            return searchArtists.count
+        }
+    }
     
     // MARK: - Initializer
     
@@ -66,7 +80,6 @@ final class SearchArtistsViewModelImpl: SearchArtistsViewModel {
     func search(query: String, _ completion: @escaping (Result<Void, AppError>) -> Void) {
         guard query.count > 2 else {
             searchArtists = []
-            uiSearchArtists = []
             return completion(.success(Void()))
         }
         
@@ -74,7 +87,6 @@ final class SearchArtistsViewModelImpl: SearchArtistsViewModel {
             guard let self else { return }
             do {
                 searchArtists = try await searchArtistsUseCase.invoke(query: query)
-                uiSearchArtists = searchArtists.map(mapper.map(artist:))
                 
                 DispatchQueue.main.async {
                     completion(.success(Void()))
@@ -90,9 +102,9 @@ final class SearchArtistsViewModelImpl: SearchArtistsViewModel {
     func updateSelectStatus(for id: Int, with isSelected: Bool) {
         switch searchState {
         case .results:
-            updateSelectStatus(for: id, with: isSelected, artists: &searchArtists, uiArtists: &uiSearchArtists)
+            updateSelectStatus(for: id, with: isSelected, artists: &searchArtists)
         case .selected:
-            updateSelectStatus(for: id, with: isSelected, artists: &selectedArtists, uiArtists: &uiSelectedArtists)
+            updateSelectStatus(for: id, with: isSelected, artists: &selectedArtists)
         }
         
         fetchSelectedArtists()
@@ -109,11 +121,10 @@ final class SearchArtistsViewModelImpl: SearchArtistsViewModel {
     
     // MARK: - Private methods
     
-    private func updateSelectStatus(for id: Int, with isSelected: Bool, artists: inout [Artist], uiArtists: inout [ArtistUIModel]) {
+    private func updateSelectStatus(for id: Int, with isSelected: Bool, artists: inout [Artist]) {
         guard
             let artist = artists.first(where: { $0.id == id }),
-            let artistIndex = artists.firstIndex(where: { $0.id == id }),
-            let uiArtistIndex = uiArtists.firstIndex(where: { $0.id == id })
+            let artistIndex = artists.firstIndex(where: { $0.id == id })
         else {
             fatalError("Error") // TODO: throw ?
         }
@@ -127,12 +138,10 @@ final class SearchArtistsViewModelImpl: SearchArtistsViewModel {
         }
         
         artists[artistIndex] = artistUpdated
-        uiArtists[uiArtistIndex] = mapper.map(artist: artistUpdated)
     }
     
     private func fetchSelectedArtists() {
         selectedArtists = fetchSelectedArtistsUseCase.invoke()
-        uiSelectedArtists = selectedArtists.map(mapper.map(artist:))
     }
     
 }
