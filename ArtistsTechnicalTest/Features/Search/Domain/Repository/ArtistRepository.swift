@@ -10,6 +10,6 @@
 protocol ArtistRepository {
     func fetch(query: String) async throws -> [Artist]
     func selectAndSave(artist: Artist) -> Artist
-    func unselectAndUnregister(artist: Artist) -> Artist
+    func deselectAndUnregister(artist: Artist) -> Artist
     func fetchSelectedArtists() -> [Artist]
 }

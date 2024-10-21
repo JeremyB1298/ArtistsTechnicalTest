@@ -10,6 +10,7 @@ import UIKit
 // MARK: - SearchArtistsTableViewDataSource
 
 protocol SearchArtistsTableViewDataSource: UITableViewDataSource {
+    var delegate: SearchArtistsTableViewCellDelegate? { get set}
     func update(with models: [ArtistUIModel])
 }
 
@@ -20,6 +21,10 @@ final class SearchArtistsTableViewDataSourceImpl: NSObject, SearchArtistsTableVi
     // MARK: - Private property
     
     private var models: [ArtistUIModel] = []
+    
+    // MARK: - Public property
+    
+    weak var delegate: SearchArtistsTableViewCellDelegate?
     
     // MARK: - Public methods
     
@@ -46,6 +51,7 @@ final class SearchArtistsTableViewDataSourceImpl: NSObject, SearchArtistsTableVi
         let index = indexPath.row
         let model = models[index]
         cell.configure(model: model)
+        cell.delegate = delegate
         
         return cell
     }

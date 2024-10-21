@@ -24,6 +24,12 @@ final class FactoryImpl: Factory {
     private let errorMapper: ErrorMapper = ErrorMapper()
     private let dataStore: ArtistDataStore = ArtistDataStoreImpl()
     private let artistUIMapper: ArtistUIMapper = ArtistUIMapper()
+    private lazy var artistRepository: ArtistRepository = ArtistRepositoryImpl(
+        service: service,
+        artistMapper: artistMapper,
+        errorMapper: errorMapper,
+        dataStore: dataStore
+    )
     
     // MARK: - Public method
     
@@ -37,21 +43,22 @@ final class FactoryImpl: Factory {
     
     private func makeSearchArtistsViewModel() -> SearchArtistsViewModel {
         let searchArtistsUseCase = makeSearchArtistsUseCase()
-        return SearchArtistsViewModelImpl(searchArtistsUseCase: searchArtistsUseCase, mapper: artistUIMapper)
+        let selectArtistUseCase = makeSelectArtistUseCase()
+        let deselectArtistUseCase = makeDeselectArtistUseCase()
+        
+        return SearchArtistsViewModelImpl(searchArtistsUseCase: searchArtistsUseCase, mapper: artistUIMapper, selectArtistUseCase: selectArtistUseCase, deselectArtistUseCase: deselectArtistUseCase)
     }
     
     private func makeSearchArtistsUseCase() -> SearchArtistsUseCase {
-        let repository = makeArtistRepository()
-        return SearchArtistsUseCaseImpl(repository: repository)
+        SearchArtistsUseCaseImpl(repository: artistRepository)
     }
     
-    private func makeArtistRepository() -> ArtistRepository {
-        ArtistRepositoryImpl(
-            service: service,
-            artistMapper: artistMapper,
-            errorMapper: errorMapper,
-            dataStore: dataStore
-        )
+    private func makeSelectArtistUseCase() -> SelectArtistUseCase {
+        SelectArtistUseCaseImpl(repository: artistRepository)
+    }
+    
+    private func makeDeselectArtistUseCase() -> DeselectArtistUseCase {
+        DeselectArtistUseCaseImpl(repository: artistRepository)
     }
     
 }

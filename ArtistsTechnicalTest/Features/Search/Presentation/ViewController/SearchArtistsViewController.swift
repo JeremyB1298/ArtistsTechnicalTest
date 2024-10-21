@@ -33,6 +33,8 @@ final class SearchArtistsViewController: UIViewController {
         dataSource = SearchArtistsTableViewDataSourceImpl()
         
         super.init(nibName: nil, bundle: nil)
+        
+        dataSource.delegate = self
     }
     
     required init?(coder: NSCoder) {
@@ -57,15 +59,20 @@ final class SearchArtistsViewController: UIViewController {
                 guard let self else { return }
                 
                 switch result {
-                case .success(let artists):
-                    searchOnSuccess(artists: artists)
+                case .success():
+                    searchOnSuccess()
                 case .failure(let error):
                     showAlert(error: error)
                 }
             }
     }
     
-    private func searchOnSuccess(artists: [ArtistUIModel]) {
+    private func searchOnSuccess() {
+        reloadData()
+    }
+    
+    private func reloadData() {
+        let artists = viewModel.uiArtists
         dataSource.update(with: artists)
         tableView.reloadData()
     }
@@ -89,7 +96,7 @@ final class SearchArtistsViewController: UIViewController {
     }
     
     private func setupUI() {
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor(resource: .backgroundWhite)
     }
     
     private func setupViews() {
@@ -136,6 +143,17 @@ extension SearchArtistsViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         let query = searchText
         search(query: query)
+    }
+    
+}
+
+// MARK: - SearchArtistsTableViewCellDelegate
+
+extension SearchArtistsViewController: SearchArtistsTableViewCellDelegate {
+    
+    func searchArtistsTableViewCell(didSelect id: Int, isSelected: Bool) {
+        viewModel.updateSelectStatus(for: id, with: isSelected)
+        reloadData()
     }
     
 }

@@ -7,6 +7,14 @@
 
 import UIKit
 
+// MARK: - SearchArtistsTableViewCellDelegate
+
+protocol SearchArtistsTableViewCellDelegate: AnyObject {
+    func searchArtistsTableViewCell(didSelect id: Int, isSelected: Bool)
+}
+
+// MARK: - SearchArtistsTableViewCell
+
 final class SearchArtistsTableViewCell: UITableViewCell {
     
     // MARK: - Constants
@@ -20,13 +28,20 @@ final class SearchArtistsTableViewCell: UITableViewCell {
         }
     }
     
-    // MARK: - Public property
+    // MARK: - Public properties
     
     static let identifier = "SearchArtistsTableViewCell"
+    weak var delegate: SearchArtistsTableViewCellDelegate?
     
-    // MARK: - Private property
+    // MARK: - Private properties
     
-    private let searchArtistsTableViewCellView: SearchArtistsTableViewCellView = SearchArtistsTableViewCellView()
+    private lazy var searchArtistsTableViewCellView: (UIView & SearchArtistsTableViewCellView) = {
+        let view = SearchArtistsTableViewCellViewImpl()
+        view.delegate = self
+        
+        return view
+    }()
+    private var artistId: Int?
     
     // MARK: - Initializers
     
@@ -44,8 +59,19 @@ final class SearchArtistsTableViewCell: UITableViewCell {
     // MARK: - Public method
     
     func configure(model: ArtistUIModel) {
+        let id = model.id
+        artistId = id
         let title = model.title
         searchArtistsTableViewCellView.setTitle(value: title)
+        
+        let isSelected = model.isSelected
+        searchArtistsTableViewCellView.setSelection(value: isSelected)
+        
+        if isSelected {
+            searchArtistsTableViewCellView.setSelectedBackground()
+        } else {
+            searchArtistsTableViewCellView.setNotSelectedBackground()
+        }
     }
     
     // MARK: - Private methods
@@ -65,6 +91,17 @@ final class SearchArtistsTableViewCell: UITableViewCell {
                 searchArtistsTableViewCellView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: Constants.Padding.bottom)
             ]
         )
+    }
+    
+}
+
+// MARK: - SearchArtistsTableViewCellViewDelegate
+
+extension SearchArtistsTableViewCell: SearchArtistsTableViewCellViewDelegate {
+    
+    func searchArtistsTableViewCellView(isSelected value: Bool) {
+        guard let artistId else { return }
+        delegate?.searchArtistsTableViewCell(didSelect: artistId, isSelected: value)
     }
     
 }

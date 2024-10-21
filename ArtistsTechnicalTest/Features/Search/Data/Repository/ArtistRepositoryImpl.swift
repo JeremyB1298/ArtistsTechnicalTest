@@ -64,7 +64,7 @@ final class ArtistRepositoryImpl: ArtistRepository {
     /// Marks the specified artist as unselected and removes it from the data store.
     /// - Parameter artist: The `Artist` object to be unselected and unregistered.
     /// - Returns: The updated `Artist` object with the `isSelected` property set to false.
-    func unselectAndUnregister(artist: Artist) -> Artist {
+    func deselectAndUnregister(artist: Artist) -> Artist {
         var updatedArtist = artist
         updatedArtist.isSelected = false
         dataStore.removeArtist(id: updatedArtist.id)

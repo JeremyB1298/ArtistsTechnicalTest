@@ -10,8 +10,9 @@ import Foundation
 // MARK: - SearchArtistsViewModel
 
 protocol SearchArtistsViewModel {
-    var artists: [ArtistUIModel] { get }
-    func search(query: String, _ completion: @escaping (Result<[ArtistUIModel], AppError>) -> Void)
+    var uiArtists: [ArtistUIModel] { get }
+    func search(query: String, _ completion: @escaping (Result<Void, AppError>) -> Void)
+    func updateSelectStatus(for id: Int, with isSelected: Bool)
 }
 
 // MARK: - SearchArtistsViewModelImpl
@@ -21,34 +22,46 @@ final class SearchArtistsViewModelImpl: SearchArtistsViewModel {
     // MARK: - Private properties
     
     private let searchArtistsUseCase: SearchArtistsUseCase
+    private let selectArtistUseCase: SelectArtistUseCase
+    private let deselectArtistUseCase: DeselectArtistUseCase
     private let mapper: ArtistUIMapper
+    private var artists: [Artist] = []
     
     // MARK: - Public property
     
-    var artists: [ArtistUIModel] = []
+    var uiArtists: [ArtistUIModel] = []
     
     // MARK: - Initializer
     
-    init(searchArtistsUseCase: SearchArtistsUseCase, mapper: ArtistUIMapper) {
+    init(
+        searchArtistsUseCase: SearchArtistsUseCase,
+        mapper: ArtistUIMapper,
+        selectArtistUseCase: SelectArtistUseCase,
+        deselectArtistUseCase: DeselectArtistUseCase
+    ) {
         self.searchArtistsUseCase = searchArtistsUseCase
         self.mapper = mapper
+        self.selectArtistUseCase = selectArtistUseCase
+        self.deselectArtistUseCase = deselectArtistUseCase
     }
     
-    // MARK: - Public method
+    // MARK: - Public methods
     
-    func search(query: String, _ completion: @escaping (Result<[ArtistUIModel], AppError>) -> Void) {
+    func search(query: String, _ completion: @escaping (Result<Void, AppError>) -> Void) {
         guard query.count > 2 else {
-            return completion(.success([]))
+            artists = []
+            uiArtists = []
+            return completion(.success(Void()))
         }
         
         Task { [weak self] in
             guard let self else { return }
             do {
-                let artists = try await searchArtistsUseCase.invoke(query: query)
-                self.artists = artists.map(mapper.map(artist:))
+                artists = try await searchArtistsUseCase.invoke(query: query)
+                uiArtists = artists.map(mapper.map(artist:))
                 
                 DispatchQueue.main.async {
-                    completion(.success(self.artists))
+                    completion(.success(Void()))
                 }
             } catch let error as AppError {
                 DispatchQueue.main.async {
@@ -56,6 +69,27 @@ final class SearchArtistsViewModelImpl: SearchArtistsViewModel {
                 }
             }
         }
+    }
+    
+    func updateSelectStatus(for id: Int, with isSelected: Bool) {
+        guard 
+            let artist = artists.first(where: { $0.id == id }),
+            let artistIndex = artists.firstIndex(where: { $0.id == id }),
+            let uiArtistIndex = uiArtists.firstIndex(where: { $0.id == id })
+        else {
+            fatalError("Error") // TODO: throw ?
+        }
+        
+        let artistUpdated: Artist
+        
+        if isSelected {
+            artistUpdated = selectArtistUseCase.invoke(artist: artist)
+        } else {
+            artistUpdated = deselectArtistUseCase.invoke(artist: artist)
+        }
+        
+        artists[artistIndex] = artistUpdated
+        uiArtists[uiArtistIndex] = mapper.map(artist: artistUpdated)
     }
     
 }

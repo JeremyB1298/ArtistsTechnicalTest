@@ -48,6 +48,7 @@
 		367FB0272CC633DE006EF090 /* SearchArtistsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367FB0262CC633DE006EF090 /* SearchArtistsTableViewCell.swift */; };
 		367FB0292CC633F4006EF090 /* SearchArtistsTableViewCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367FB0282CC633F4006EF090 /* SearchArtistsTableViewCellView.swift */; };
 		367FB02C2CC63708006EF090 /* SearchArtistsTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367FB02B2CC63708006EF090 /* SearchArtistsTableViewDataSource.swift */; };
+		367FB02E2CC64B22006EF090 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 367FB02D2CC64B22006EF090 /* Colors.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -113,6 +114,7 @@
 		367FB0262CC633DE006EF090 /* SearchArtistsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchArtistsTableViewCell.swift; sourceTree = "<group>"; };
 		367FB0282CC633F4006EF090 /* SearchArtistsTableViewCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchArtistsTableViewCellView.swift; sourceTree = "<group>"; };
 		367FB02B2CC63708006EF090 /* SearchArtistsTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchArtistsTableViewDataSource.swift; sourceTree = "<group>"; };
+		367FB02D2CC64B22006EF090 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -415,6 +417,7 @@
 			isa = PBXGroup;
 			children = (
 				367FAF9C2CC2C135006EF090 /* Assets.xcassets */,
+				367FB02D2CC64B22006EF090 /* Colors.xcassets */,
 				367FAF9E2CC2C135006EF090 /* LaunchScreen.storyboard */,
 			);
 			path = Resources;
@@ -591,6 +594,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				367FB02E2CC64B22006EF090 /* Colors.xcassets in Resources */,
 				367FAF9D2CC2C135006EF090 /* Assets.xcassets in Resources */,
 				367FAFA02CC2C135006EF090 /* Base in Resources */,
 			);

@@ -1,19 +1,19 @@
 //
-//  UnselectArtistUseCase.swift
+//  DeselectArtistUseCase.swift
 //  ArtistsTechnicalTest
 //
 //  Created by Jeremy  Bailly  on 20/10/2024.
 //
 
-// MARK: - UnselectArtistUseCase
+// MARK: - DeselectArtistUseCase
 
-protocol UnselectArtistUseCase {
+protocol DeselectArtistUseCase {
     func invoke(artist: Artist) -> Artist
 }
 
-// MARK: - UnselectArtistUseCaseImpl
+// MARK: - DeselectArtistUseCaseImpl
 
-final class UnselectArtistUseCaseImpl: UnselectArtistUseCase {
+final class DeselectArtistUseCaseImpl: DeselectArtistUseCase {
     
     // MARK: - Private property
     
@@ -28,7 +28,7 @@ final class UnselectArtistUseCaseImpl: UnselectArtistUseCase {
     // MARK: - Public method
     
     func invoke(artist: Artist) -> Artist {
-        repository.unselectAndUnregister(artist: artist)
+        repository.deselectAndUnregister(artist: artist)
     }
     
 }

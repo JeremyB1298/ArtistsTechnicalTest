@@ -7,13 +7,29 @@
 
 import UIKit
 
-final class SearchArtistsTableViewCellView: UIView {
+// MARK: - SearchArtistsTableViewCellViewDelegate
+
+protocol SearchArtistsTableViewCellViewDelegate: AnyObject {
+    func searchArtistsTableViewCellView(isSelected value: Bool)
+}
+
+// MARK: - SearchArtistsTableViewCellView
+
+protocol SearchArtistsTableViewCellView {
+    var delegate: SearchArtistsTableViewCellViewDelegate? { get set }
+    func setTitle(value: String)
+    func setSelection(value: Bool)
+    func setSelectedBackground()
+    func setNotSelectedBackground()
+}
+
+final class SearchArtistsTableViewCellViewImpl: UIView, SearchArtistsTableViewCellView {
     
     // MARK: - Constants
     
     private enum Constants {
         enum TitleLabel {
-            static let fontSize = 14.0
+            static let fontSize = 18.0
             
             enum Padding {
                 static let leading = 16.0
@@ -40,12 +56,21 @@ final class SearchArtistsTableViewCellView: UIView {
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.font = .boldSystemFont(ofSize: Constants.TitleLabel.fontSize)
-        label .textColor = .black
+        label .textColor = UIColor(resource: .fontBlack)
         
         return label
     }()
     
-    private let selectSwitch: UISwitch = UISwitch()
+    private lazy var selectSwitch: UISwitch = {
+        let uiSwitch = UISwitch()
+        uiSwitch.addTarget(self, action: #selector(switchValueDidChange), for: .valueChanged)
+        
+        return uiSwitch
+    }()
+    
+    // MARK: - Public property
+    
+    weak var delegate: SearchArtistsTableViewCellViewDelegate?
     
     // MARK: - Initializers
     
@@ -67,7 +92,25 @@ final class SearchArtistsTableViewCellView: UIView {
         titleLabel.text = value
     }
     
+    func setSelection(value: Bool) {
+        selectSwitch.isOn = value
+    }
+    
+    func setSelectedBackground() {
+        backgroundColor = UIColor(resource: .backgroundBlue)
+    }
+    
+    func setNotSelectedBackground() {
+        backgroundColor = UIColor(resource: .backgroundGray)
+    }
+    
     // MARK: - Private methods
+    
+    @objc
+    private func switchValueDidChange(sender: UISwitch!) {
+        let value = sender.isOn
+        delegate?.searchArtistsTableViewCellView(isSelected: value)
+    }
     
     private func setupUI() {
         backgroundColor = .systemGray5
