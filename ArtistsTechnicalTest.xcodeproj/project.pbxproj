@@ -51,6 +51,9 @@
 		367FB02E2CC64B22006EF090 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 367FB02D2CC64B22006EF090 /* Colors.xcassets */; };
 		367FB0302CC651C7006EF090 /* SearchArtistsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367FB02F2CC651C7006EF090 /* SearchArtistsView.swift */; };
 		367FB0342CC687B9006EF090 /* ResetSelectedArtistsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367FB0332CC687B9006EF090 /* ResetSelectedArtistsUseCase.swift */; };
+		367FB0372CC6920E006EF090 /* SearchArtistsSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367FB0362CC6920E006EF090 /* SearchArtistsSearchBar.swift */; };
+		367FB03B2CC6938C006EF090 /* SearchArtistsShowButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367FB03A2CC6938C006EF090 /* SearchArtistsShowButton.swift */; };
+		367FB03D2CC69406006EF090 /* SearchArtistsResetButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367FB03C2CC69406006EF090 /* SearchArtistsResetButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -119,6 +122,9 @@
 		367FB02D2CC64B22006EF090 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		367FB02F2CC651C7006EF090 /* SearchArtistsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchArtistsView.swift; sourceTree = "<group>"; };
 		367FB0332CC687B9006EF090 /* ResetSelectedArtistsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetSelectedArtistsUseCase.swift; sourceTree = "<group>"; };
+		367FB0362CC6920E006EF090 /* SearchArtistsSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchArtistsSearchBar.swift; sourceTree = "<group>"; };
+		367FB03A2CC6938C006EF090 /* SearchArtistsShowButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchArtistsShowButton.swift; sourceTree = "<group>"; };
+		367FB03C2CC69406006EF090 /* SearchArtistsResetButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchArtistsResetButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -431,6 +437,8 @@
 		367FB0142CC5234B006EF090 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				367FB0382CC69358006EF090 /* Buttons */,
+				367FB0352CC691FC006EF090 /* SearchBar */,
 				367FB0222CC63379006EF090 /* TableView */,
 				367FB02F2CC651C7006EF090 /* SearchArtistsView.swift */,
 			);
@@ -494,6 +502,23 @@
 				367FB02B2CC63708006EF090 /* SearchArtistsTableViewDataSource.swift */,
 			);
 			path = DataSource;
+			sourceTree = "<group>";
+		};
+		367FB0352CC691FC006EF090 /* SearchBar */ = {
+			isa = PBXGroup;
+			children = (
+				367FB0362CC6920E006EF090 /* SearchArtistsSearchBar.swift */,
+			);
+			path = SearchBar;
+			sourceTree = "<group>";
+		};
+		367FB0382CC69358006EF090 /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				367FB03A2CC6938C006EF090 /* SearchArtistsShowButton.swift */,
+				367FB03C2CC69406006EF090 /* SearchArtistsResetButton.swift */,
+			);
+			path = Buttons;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -638,8 +663,10 @@
 				367FAF942CC2C134006EF090 /* AppDelegate.swift in Sources */,
 				367FB00F2CC52159006EF090 /* AppCoordinator.swift in Sources */,
 				367FAFDC2CC3E0D1006EF090 /* Artist.swift in Sources */,
+				367FB03B2CC6938C006EF090 /* SearchArtistsShowButton.swift in Sources */,
 				367FAFF82CC3F4D5006EF090 /* ErrorMapper.swift in Sources */,
 				367FAFD62CC3E084006EF090 /* SearchArtistsResultDTO.swift in Sources */,
+				367FB03D2CC69406006EF090 /* SearchArtistsResetButton.swift in Sources */,
 				367FB0292CC633F4006EF090 /* SearchArtistsTableViewCellView.swift in Sources */,
 				367FB0272CC633DE006EF090 /* SearchArtistsTableViewCell.swift in Sources */,
 				367FB0242CC63392006EF090 /* SearchArtistsTableView.swift in Sources */,
@@ -655,6 +682,7 @@
 				367FAFE62CC3ED8E006EF090 /* ArtistMapper.swift in Sources */,
 				367FB0132CC5230A006EF090 /* SearchArtistsViewController.swift in Sources */,
 				367FAFD42CC3E036006EF090 /* ArtistDTO.swift in Sources */,
+				367FB0372CC6920E006EF090 /* SearchArtistsSearchBar.swift in Sources */,
 				367FB0072CC5201C006EF090 /* SelectArtistUseCase.swift in Sources */,
 				367FAFD12CC3DEE1006EF090 /* TargetType.swift in Sources */,
 				367FB0022CC51F1C006EF090 /* SearchArtistsUseCase.swift in Sources */,

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Combine
 
 // MARK: - SearchState
 
@@ -41,6 +42,8 @@ final class SearchArtistsViewModelImpl: SearchArtistsViewModel {
     private let mapper: ArtistUIMapper
     private var searchArtists: [Artist] = []
     private var selectedArtists: [Artist] = []
+    private var searchTimer: AnyCancellable?
+    private let searchRequestDelay = 300
     
     // MARK: - Public property
     
@@ -91,20 +94,13 @@ final class SearchArtistsViewModelImpl: SearchArtistsViewModel {
             return completion(.success(Void()))
         }
         
-        Task { [weak self] in
-            guard let self else { return }
-            do {
-                searchArtists = try await searchArtistsUseCase.invoke(query: query)
-                
-                DispatchQueue.main.async {
-                    completion(.success(Void()))
-                }
-            } catch let error as AppError {
-                DispatchQueue.main.async {
-                    completion(.failure(error))
-                }
+        searchTimer?.cancel()
+        
+        searchTimer = Just(query)
+            .delay(for: .milliseconds(searchRequestDelay), scheduler: RunLoop.main)
+            .sink { [weak self] query in
+                self?.performSearch(query: query, completion)
             }
-        }
     }
     
     func updateSelectStatus(for id: Int, with isSelected: Bool) {
@@ -135,6 +131,23 @@ final class SearchArtistsViewModelImpl: SearchArtistsViewModel {
     }
     
     // MARK: - Private methods
+    
+    private func performSearch(query: String, _ completion: @escaping (Result<Void, AppError>) -> Void) {
+        Task { [weak self] in
+            guard let self else { return }
+            do {
+                searchArtists = try await searchArtistsUseCase.invoke(query: query)
+                
+                DispatchQueue.main.async {
+                    completion(.success(Void()))
+                }
+            } catch let error as AppError {
+                DispatchQueue.main.async {
+                    completion(.failure(error))
+                }
+            }
+        }
+    }
     
     private func updateSelectStatus(for id: Int, with isSelected: Bool, artists: inout [Artist]) {
         guard

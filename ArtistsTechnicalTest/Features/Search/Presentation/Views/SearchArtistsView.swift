@@ -48,28 +48,22 @@ final class SearchArtistsViewImpl: UIView, SearchArtistsView {
     // MARK: - Private properties
     
     private lazy var searchBar: UISearchBar = {
-        let searchBar = UISearchBar()
+        let searchBar = SearchArtistsSearchBar()
         searchBar.delegate = self
-        searchBar.placeholder = "Search an artist name..."
         
         return searchBar
     }()
     private lazy var tableView: UITableView = SearchArtistsTableView()
     private lazy var showButton: UIButton = {
-        let button = UIButton()
+        let button = SearchArtistsShowButton()
         button.addTarget(self, action: #selector(showAction), for: .touchUpInside)
-        button.setTitle("0 Selected", for: .normal)
-        button.setTitleColor(.tintColor, for: .normal)
-        button.setTitleColor(.lightGray, for: .disabled)
         button.isEnabled = false
         
         return button
     }()
     private lazy var resetButton: UIButton = {
-        let button = UIButton()
+        let button = SearchArtistsResetButton()
         button.addTarget(self, action: #selector(reset), for: .touchUpInside)
-        button.setTitle("Reset", for: .normal)
-        button.setTitleColor(.tintColor, for: .normal)
         button.isHidden = true
         
         return button
