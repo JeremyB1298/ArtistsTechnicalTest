@@ -28,6 +28,7 @@ final class AppCoordinator: Coordinator {
     
     func start() {
         let viewController = factory.makeSearchArtistsViewController()
+        navigationController.setNavigationBarHidden(true, animated: false)
         navigationController.pushViewController(viewController, animated: false)
     }
     
