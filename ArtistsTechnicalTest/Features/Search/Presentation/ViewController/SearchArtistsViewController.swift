@@ -58,12 +58,34 @@ final class SearchArtistsViewController: UIViewController {
                 
                 switch result {
                 case .success(let artists):
-                    dataSource.update(with: artists)
-                    tableView.reloadData()
+                    searchOnSuccess(artists: artists)
                 case .failure(let error):
-                    print("ERROR => \(error)")
+                    showAlert(error: error)
                 }
             }
+    }
+    
+    private func searchOnSuccess(artists: [ArtistUIModel]) {
+        dataSource.update(with: artists)
+        tableView.reloadData()
+    }
+    
+    private func showAlert(error: AppError) {
+        let message: String
+        
+        switch error {
+        case .invalidURL(let string),
+                .badResponse(let string),
+                .decodingError(let string),
+                .networkError(let string):
+            message = string
+        }
+        
+        let alertController = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+        let okAlertAction = UIAlertAction(title: "ok", style: .cancel)
+        alertController.addAction(okAlertAction)
+        
+        present(alertController, animated: true)
     }
     
     private func setupUI() {
