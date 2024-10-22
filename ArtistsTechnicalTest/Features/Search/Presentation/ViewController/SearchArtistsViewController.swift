@@ -7,6 +7,8 @@
 
 import UIKit
 
+/// A view controller that displays a search interface for artists.
+/// This class handles user interactions and displays the results based on the search state.
 final class SearchArtistsViewController: UIViewController {
     
     // MARK: - Private properties
@@ -50,6 +52,8 @@ final class SearchArtistsViewController: UIViewController {
     
     // MARK: - Private methods
     
+    /// Performs a search with the provided query.
+    /// - Parameter query: The search query entered by the user.
     private func search(query: String) {
         viewModel
             .search(query: query) { [weak self] result in
@@ -57,23 +61,22 @@ final class SearchArtistsViewController: UIViewController {
                 
                 switch result {
                 case .success():
-                    searchOnSuccess()
+                    reloadData()
                 case .failure(let error):
                     showAlert(error: error)
                 }
             }
     }
     
-    private func searchOnSuccess() {
-        reloadData()
-    }
-    
+    /// Reloads the data displayed in the view.
     private func reloadData() {
         let artists = viewModel.uiArtists
         dataSource.update(with: artists)
         contentView.reloadData()
     }
     
+    /// Displays an alert with the provided error message.
+    /// - Parameter error: The error to display.
     private func showAlert(error: AppError) {
         let message = error.localizationDescription
         
@@ -84,14 +87,17 @@ final class SearchArtistsViewController: UIViewController {
         present(alertController, animated: true)
     }
     
+    /// Sets up the user interface properties.
     private func setupUI() {
         view.backgroundColor = UIColor(resource: .backgroundWhite)
     }
     
+    /// Sets up the views by adding them to the main view.
     private func setupViews() {
         view.addSubview(contentView)
     }
     
+    /// Configures layout constraints for the content view.
     private func makeConstraints() {
         contentView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -105,6 +111,7 @@ final class SearchArtistsViewController: UIViewController {
         )
     }
     
+    /// Updates the UI based on the current search state.
     private func reloadUIWithCurrentState() {
         let count = viewModel.showCount
         
@@ -119,6 +126,8 @@ final class SearchArtistsViewController: UIViewController {
         reloadData()
     }
     
+    /// Updates the show button UI for the results state.
+    /// - Parameter count: The count of selected artists.
     private func updateShowButtonUIForResultsState(count: Int) {
         let isEnabled = count != 0
         let title: String
@@ -132,32 +141,40 @@ final class SearchArtistsViewController: UIViewController {
         contentView.updateShowButtonWith(title: title, isEnabled: isEnabled)
     }
     
+    /// Updates the show button UI for the selected state.
+    /// - Parameter count: The count of artists in results.
     private func updateShowButtonUIForSelectedState(count: Int) {
         let title = "Show Results (\(count))"
         contentView.updateShowButtonWith(title: title, isEnabled: true)
     }
     
+    /// Updates the reset button UI based on the selection state.
     private func updateResetUI() {
         let isHidden = !viewModel.isResetEnabled
         contentView.updateResetButton(isHidden: isHidden)
     }
     
+    /// Updates the UI with the current search query.
+    /// - Parameter query: The search query entered by the user.
     private func updateUI(with query: String) {
         resetSearchState()
         search(query: query)
     }
     
+    /// Resets the search state if it is currently in selected mode.
     private func resetSearchState() {
         guard viewModel.searchState == .selected else { return }
         viewModel.switchSearchState()
         reloadUIWithCurrentState()
     }
     
+    /// Handles the action to show artists.
     private func didSelectShow() {
         viewModel.switchSearchState()
         reloadUIWithCurrentState()
     }
     
+    /// Resets the artist selection and updates the UI.
     private func reset() {
         viewModel.reset()
         contentView.resetSearchBar()
