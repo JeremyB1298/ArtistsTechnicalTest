@@ -75,15 +75,7 @@ final class SearchArtistsViewController: UIViewController {
     }
     
     private func showAlert(error: AppError) {
-        let message: String
-        
-        switch error {
-        case .invalidURL(let string),
-                .badResponse(let string),
-                .decodingError(let string),
-                .networkError(let string):
-            message = string
-        }
+        let message = error.localizationDescription
         
         let alertController = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
         let okAlertAction = UIAlertAction(title: "ok", style: .cancel)

@@ -10,6 +10,8 @@ import Combine
 
 // MARK: - SearchState
 
+/// An enumeration representing the current state of the search.
+/// The state can be either showing search results or selected artists.
 enum SearchState {
     case results
     case selected
@@ -17,14 +19,30 @@ enum SearchState {
 
 // MARK: - SearchArtistsViewModel
 
+/// A protocol defining the requirements for the search artists view model.
+/// This protocol provides properties and methods for managing the artist search and selection.
 protocol SearchArtistsViewModel {
     var searchState: SearchState { get }
     var uiArtists: [ArtistUIModel] { get }
     var showCount: Int { get }
     var isResetEnabled: Bool { get }
+    
+    /// Searches for artists based on the provided query and invokes the completion handler with the result.
+    /// - Parameters:
+    ///   - query: The search query for finding artists.
+    ///   - completion: A completion handler to handle the result of the search.
     func search(query: String, _ completion: @escaping (Result<Void, AppError>) -> Void)
+    
+    /// Updates the selection status of an artist by its ID.
+    /// - Parameters:
+    ///   - id: The ID of the artist to update.
+    ///   - isSelected: The new selection status for the artist.
     func updateSelectStatus(for id: Int, with isSelected: Bool)
+    
+    /// Switches the search state between results and selected.
     func switchSearchState()
+    
+    /// Resets the selected artists and search state.
     func reset()
 }
 
@@ -88,6 +106,10 @@ final class SearchArtistsViewModelImpl: SearchArtistsViewModel {
     
     // MARK: - Public methods
     
+    /// Searches for artists based on the provided query and invokes the completion handler with the result.
+    /// - Parameters:
+    ///   - query: The search query for finding artists.
+    ///   - completion: A completion handler to handle the result of the search.
     func search(query: String, _ completion: @escaping (Result<Void, AppError>) -> Void) {
         
         searchTimer?.cancel()
@@ -99,6 +121,10 @@ final class SearchArtistsViewModelImpl: SearchArtistsViewModel {
             }
     }
     
+    /// Updates the selection status of an artist by its ID.
+    /// - Parameters:
+    ///   - id: The ID of the artist to update.
+    ///   - isSelected: The new selection status for the artist.
     func updateSelectStatus(for id: Int, with isSelected: Bool) {
         switch searchState {
         case .results:
@@ -110,6 +136,7 @@ final class SearchArtistsViewModelImpl: SearchArtistsViewModel {
         fetchSelectedArtists()
     }
     
+    /// Switches the search state between results and selected.
     func switchSearchState() {
         switch searchState {
         case .results:
@@ -119,6 +146,7 @@ final class SearchArtistsViewModelImpl: SearchArtistsViewModel {
         }
     }
     
+    /// Resets the selected artists and search state.
     func reset() {
         resetSelectedArtistsUseCase.invoke()
         searchState = .results
@@ -128,6 +156,10 @@ final class SearchArtistsViewModelImpl: SearchArtistsViewModel {
     
     // MARK: - Private methods
     
+    /// Performs the actual search operation and handles the results.
+    /// - Parameters:
+    ///   - query: The search query to use for the search.
+    ///   - completion: A completion handler to handle the result of the search.
     private func performSearch(query: String, _ completion: @escaping (Result<Void, AppError>) -> Void) {
         Task { [weak self] in
             guard let self else { return }
@@ -145,12 +177,17 @@ final class SearchArtistsViewModelImpl: SearchArtistsViewModel {
         }
     }
     
+    /// Updates the selection status of an artist in the specified list.
+    /// - Parameters:
+    ///   - id: The ID of the artist to update.
+    ///   - isSelected: The new selection status for the artist.
+    ///   - artists: The list of artists to update.
     private func updateSelectStatus(for id: Int, with isSelected: Bool, artists: inout [Artist]) {
         guard
             let artist = artists.first(where: { $0.id == id }),
             let artistIndex = artists.firstIndex(where: { $0.id == id })
         else {
-            fatalError("Error") // TODO: throw ?
+            return
         }
         
         let artistUpdated: Artist

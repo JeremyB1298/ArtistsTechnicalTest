@@ -73,4 +73,19 @@ final class AppErrorTests: XCTestCase {
         )
     }
     
+    /// Tests the error message for internal error.
+    func test_internal_error() {
+        let string = "internal error"
+        let error = AppError.internalError(string)
+        let localizationDescription = error.localizationDescription
+        
+        XCTAssertEqual(
+            localizationDescription,
+            """
+            An internal error occured:
+                    internal error
+            """
+        )
+    }
+    
 }

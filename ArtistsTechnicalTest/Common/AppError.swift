@@ -12,6 +12,7 @@ enum AppError: Error {
     case badResponse(String)
     case decodingError(String)
     case networkError(String)
+    case internalError(String)
     
     var localizationDescription: String {
         switch self {
@@ -33,6 +34,11 @@ enum AppError: Error {
         case .networkError(let string):
             return """
             An error occurred on the network called:
+            \(string)
+            """
+        case .internalError(let string):
+            return """
+            An internal error occured:
             \(string)
             """
         }

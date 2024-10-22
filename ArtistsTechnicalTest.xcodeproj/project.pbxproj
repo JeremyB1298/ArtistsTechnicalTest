@@ -58,6 +58,8 @@
 		367FB0442CC798AD006EF090 /* ArtistTargetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367FB0432CC798AD006EF090 /* ArtistTargetTests.swift */; };
 		367FB0472CC79D26006EF090 /* ArtistMapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367FB0462CC79D26006EF090 /* ArtistMapperTests.swift */; };
 		367FB04B2CC7AC86006EF090 /* SearchArtistsUseCaseImplTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367FB04A2CC7AC86006EF090 /* SearchArtistsUseCaseImplTests.swift */; };
+		367FB04F2CC7C241006EF090 /* ArtistUIMapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367FB04E2CC7C241006EF090 /* ArtistUIMapperTests.swift */; };
+		367FB0522CC7CA87006EF090 /* SearchArtistsViewModelImplTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367FB0512CC7CA87006EF090 /* SearchArtistsViewModelImplTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -133,6 +135,8 @@
 		367FB0432CC798AD006EF090 /* ArtistTargetTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistTargetTests.swift; sourceTree = "<group>"; };
 		367FB0462CC79D26006EF090 /* ArtistMapperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistMapperTests.swift; sourceTree = "<group>"; };
 		367FB04A2CC7AC86006EF090 /* SearchArtistsUseCaseImplTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchArtistsUseCaseImplTests.swift; sourceTree = "<group>"; };
+		367FB04E2CC7C241006EF090 /* ArtistUIMapperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistUIMapperTests.swift; sourceTree = "<group>"; };
+		367FB0512CC7CA87006EF090 /* SearchArtistsViewModelImplTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchArtistsViewModelImplTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -353,6 +357,7 @@
 		367FAFE82CC3EF8F006EF090 /* Search */ = {
 			isa = PBXGroup;
 			children = (
+				367FB04C2CC7C22C006EF090 /* Presentation */,
 				367FB0482CC7AC64006EF090 /* Domain */,
 				367FAFE92CC3EF97006EF090 /* Data */,
 			);
@@ -573,6 +578,31 @@
 			path = UseCases;
 			sourceTree = "<group>";
 		};
+		367FB04C2CC7C22C006EF090 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				367FB0502CC7CA79006EF090 /* ViewModel */,
+				367FB04D2CC7C232006EF090 /* Mapper */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		367FB04D2CC7C232006EF090 /* Mapper */ = {
+			isa = PBXGroup;
+			children = (
+				367FB04E2CC7C241006EF090 /* ArtistUIMapperTests.swift */,
+			);
+			path = Mapper;
+			sourceTree = "<group>";
+		};
+		367FB0502CC7CA79006EF090 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				367FB0512CC7CA87006EF090 /* SearchArtistsViewModelImplTests.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -747,6 +777,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				367FAFF12CC3F0AD006EF090 /* MockTarget.swift in Sources */,
+				367FB0522CC7CA87006EF090 /* SearchArtistsViewModelImplTests.swift in Sources */,
 				367FAFEC2CC3EFCA006EF090 /* ArtistRepositoryImplTests.swift in Sources */,
 				367FAFAB2CC2C135006EF090 /* ArtistsTechnicalTestTests.swift in Sources */,
 				367FB04B2CC7AC86006EF090 /* SearchArtistsUseCaseImplTests.swift in Sources */,
@@ -755,6 +786,7 @@
 				367FB0402CC789AC006EF090 /* AppErrorTests.swift in Sources */,
 				367FAFEF2CC3F039006EF090 /* MockURLProtocol.swift in Sources */,
 				367FB0002CC4F0A7006EF090 /* ArtistDataStoreImplTests.swift in Sources */,
+				367FB04F2CC7C241006EF090 /* ArtistUIMapperTests.swift in Sources */,
 				367FAFF32CC3F0EC006EF090 /* MockDecodableType.swift in Sources */,
 				367FB0472CC79D26006EF090 /* ArtistMapperTests.swift in Sources */,
 			);
