@@ -38,12 +38,12 @@ final class SearchArtistsTableViewDataSourceImpl: NSObject, SearchArtistsTableVi
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard
-            let cell = tableView
+            var cell = tableView
                 .dequeueReusableCell(
-                    withIdentifier: SearchArtistsTableViewCell.identifier,
+                    withIdentifier: SearchArtistsTableViewCellImpl.identifier,
                     for: indexPath
                 )
-                as? SearchArtistsTableViewCell
+                as? (UITableViewCell & SearchArtistsTableViewCell)
         else {
             return UITableViewCell()
         }

@@ -23,7 +23,7 @@ final class SearchArtistsTableView: UITableView {
     // MARK: - Private method
     
     func setup() {
-        register(SearchArtistsTableViewCell.self, forCellReuseIdentifier: SearchArtistsTableViewCell.identifier)
+        register(SearchArtistsTableViewCellImpl.self, forCellReuseIdentifier: SearchArtistsTableViewCellImpl.identifier)
         separatorStyle = .none
     }
 }

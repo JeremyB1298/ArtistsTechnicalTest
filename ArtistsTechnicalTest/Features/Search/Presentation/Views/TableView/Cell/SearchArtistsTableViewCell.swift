@@ -7,6 +7,12 @@
 
 import UIKit
 
+protocol SearchArtistsTableViewCell {
+    static var identifier: String { get }
+    var delegate: SearchArtistsTableViewCellDelegate? { get set}
+    func configure(model: ArtistUIModel)
+}
+
 // MARK: - SearchArtistsTableViewCellDelegate
 
 protocol SearchArtistsTableViewCellDelegate: AnyObject {
@@ -15,7 +21,7 @@ protocol SearchArtistsTableViewCellDelegate: AnyObject {
 
 // MARK: - SearchArtistsTableViewCell
 
-final class SearchArtistsTableViewCell: UITableViewCell {
+final class SearchArtistsTableViewCellImpl: UITableViewCell, SearchArtistsTableViewCell {
     
     // MARK: - Constants
     
@@ -102,7 +108,7 @@ final class SearchArtistsTableViewCell: UITableViewCell {
 
 // MARK: - SearchArtistsTableViewCellViewDelegate
 
-extension SearchArtistsTableViewCell: SearchArtistsTableViewCellViewDelegate {
+extension SearchArtistsTableViewCellImpl: SearchArtistsTableViewCellViewDelegate {
     
     func searchArtistsTableViewCellView(isSelected value: Bool) {
         guard let artistId else { return }
