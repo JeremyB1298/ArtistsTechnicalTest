@@ -143,6 +143,17 @@ final class ArtistRepositoryImplTests: XCTestCase {
         XCTAssertEqual(selectedArtists[1].title, artist2.title)
     }
     
+    /// Tests the resetSelectedArtists method to ensure all artists are removed.
+    func test_reset_selected_artists() {
+        let artist = Artist(id: 0, title: "My artist", isSelected: false)
+        
+        _ = sut.selectAndSave(artist: artist)
+        sut.resetSelectedArtists()
+        let selectedArtists = sut.fetchSelectedArtists()
+        
+        XCTAssertTrue(selectedArtists.isEmpty)
+    }
+    
 }
 
 // MARK: - Models

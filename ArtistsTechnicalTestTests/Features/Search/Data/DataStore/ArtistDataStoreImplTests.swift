@@ -86,4 +86,39 @@ final class ArtistDataStoreImplTests: XCTestCase {
         XCTAssertEqual(artistIdsSaved, [artist1.id, artist2.id])
     }
     
+    /// Tests the retrieve of all saved artists.
+    func test_get_saved_artists() {
+        sut = ArtistDataStoreImpl()
+        let artist1 = Artist(id: 0, title: "My artist to save 1", isSelected: false)
+        let artist2 = Artist(id: 1, title: "My artist to save 2", isSelected: true)
+        
+        _ = sut.saveArtist(artist: artist1)
+        _ = sut.saveArtist(artist: artist2)
+        
+        let artistsSaved = sut.getSavedArtists()
+        
+        XCTAssertEqual(artistsSaved[0].id, artist1.id)
+        XCTAssertEqual(artistsSaved[0].title, artist1.title)
+        XCTAssertEqual(artistsSaved[0].isSelected, artist1.isSelected)
+        XCTAssertEqual(artistsSaved[1].id, artist2.id)
+        XCTAssertEqual(artistsSaved[1].title, artist2.title)
+        XCTAssertEqual(artistsSaved[1].isSelected, artist2.isSelected)
+    }
+    
+    /// Tests the reset functionality of the data store
+    func test_reset() {
+        sut = ArtistDataStoreImpl()
+        let artist1 = Artist(id: 0, title: "My artist to save 1", isSelected: false)
+        let artist2 = Artist(id: 1, title: "My artist to save 2", isSelected: true)
+        
+        _ = sut.saveArtist(artist: artist1)
+        _ = sut.saveArtist(artist: artist2)
+        
+        sut.reset()
+        
+        let artistsSaved = sut.getSavedArtists()
+        
+        XCTAssertTrue(artistsSaved.isEmpty)
+    }
+    
 }

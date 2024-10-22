@@ -11,6 +11,10 @@ import Foundation
 
 /// A protocol defining the requirements for a service that handles network requests.
 protocol Service {
+    /// Loads a resource from the given target and decodes it into the specified type.
+    /// - Parameter target: The target type defining the base URL and path for the request.
+    /// - Returns: A decoded object of type `T`, which conforms to `Decodable`
+    /// - Throws: An error if the network request fails or if decoding fails.
     func load<T: Decodable>(target: TargetType) async throws -> T
 }
 

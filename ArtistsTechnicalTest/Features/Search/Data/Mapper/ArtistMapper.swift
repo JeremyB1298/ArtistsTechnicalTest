@@ -11,6 +11,8 @@ import Foundation
 /// This struct is used to convert `SearchArtistsResultDTO` into an array of `Artist` objects.
 struct ArtistMapper {
     
+    // MARK: - Public method
+    
     /// Maps a `SearchArtistsResultDTO` object to an array of `Artist` objects.
     /// - Parameter searchArtistsResultDTO: The DTO containing artist data to be mapped.
     /// - Returns: An array of `Artist` objects mapped from the provided DTO.
@@ -19,6 +21,8 @@ struct ArtistMapper {
         
         return artistDTOs.map(map(artistDTO:))
     }
+    
+    // MARK: - Private method
     
     /// Maps a single `ArtistDTO` object to an `Artist` object.
     /// - Parameter artistDTO: The DTO containing artist data to be mapped.

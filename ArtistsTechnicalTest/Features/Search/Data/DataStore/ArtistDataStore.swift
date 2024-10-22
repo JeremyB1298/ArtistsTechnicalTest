@@ -10,10 +10,25 @@
 /// A protocol defining the requirements for an artist data store.
 /// This protocol provides methods for saving, removing, and retrieving artist information.
 protocol ArtistDataStore {
+    
+    /// Saves an artist to the data store.
+    /// - Parameter artist: The artist to be saved.
+    /// - Returns: The saved artist object.
     func saveArtist(artist: Artist) -> Artist
+    
+    /// Removes an artist from the data store by its identifier
+    /// - Parameter id: The identifier of the artist to be removed.
     func removeArtist(id: Int)
+    
+    /// Retrieves an array of saved artist identifiers.
+    /// - Returns: An array of integers representing the IDs of saved artists.
     func getSavedArtistIds() -> [Int]
+    
+    /// Retrieves an array of all saved artists from the data store.
+    /// - Returns: An array of `Artist`objects that have been saved.
     func getSavedArtists() -> [Artist]
+    
+    /// Resets the data store, clearing all saved artists.
     func reset()
 }
 
@@ -31,12 +46,13 @@ final class ArtistDataStoreImpl: ArtistDataStore {
     
     /// Saves an artist to the data store.
     /// - Parameter artist: The artist to be saved.
+    /// - Returns: The saved artist object.
     func saveArtist(artist: Artist) -> Artist {
         artistsSaved.append(artist)
         return artist
     }
     
-    /// Removes an artist from the data store by its identifier.
+    /// Removes an artist from the data store by its identifier
     /// - Parameter id: The identifier of the artist to be removed.
     func removeArtist(id: Int) {
         artistsSaved.removeAll(where: { $0.id == id })
@@ -49,11 +65,12 @@ final class ArtistDataStoreImpl: ArtistDataStore {
     }
     
     /// Retrieves an array of all saved artists from the data store.
-    /// - Returns: An array of `Artist` objects that have been saved.
+    /// - Returns: An array of `Artist`objects that have been saved.
     func getSavedArtists() -> [Artist] {
         artistsSaved
     }
     
+    /// Resets the data store, clearing all saved artists.
     func reset() {
         artistsSaved.removeAll()
     }

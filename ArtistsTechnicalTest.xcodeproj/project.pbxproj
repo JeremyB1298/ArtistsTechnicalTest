@@ -55,6 +55,8 @@
 		367FB03B2CC6938C006EF090 /* SearchArtistsShowButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367FB03A2CC6938C006EF090 /* SearchArtistsShowButton.swift */; };
 		367FB03D2CC69406006EF090 /* SearchArtistsResetButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367FB03C2CC69406006EF090 /* SearchArtistsResetButton.swift */; };
 		367FB0402CC789AC006EF090 /* AppErrorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367FB03F2CC789AC006EF090 /* AppErrorTests.swift */; };
+		367FB0442CC798AD006EF090 /* ArtistTargetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367FB0432CC798AD006EF090 /* ArtistTargetTests.swift */; };
+		367FB0472CC79D26006EF090 /* ArtistMapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367FB0462CC79D26006EF090 /* ArtistMapperTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -127,6 +129,8 @@
 		367FB03A2CC6938C006EF090 /* SearchArtistsShowButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchArtistsShowButton.swift; sourceTree = "<group>"; };
 		367FB03C2CC69406006EF090 /* SearchArtistsResetButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchArtistsResetButton.swift; sourceTree = "<group>"; };
 		367FB03F2CC789AC006EF090 /* AppErrorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppErrorTests.swift; sourceTree = "<group>"; };
+		367FB0432CC798AD006EF090 /* ArtistTargetTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistTargetTests.swift; sourceTree = "<group>"; };
+		367FB0462CC79D26006EF090 /* ArtistMapperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistMapperTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -355,6 +359,8 @@
 		367FAFE92CC3EF97006EF090 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				367FB0452CC79D12006EF090 /* Mapper */,
+				367FB0422CC79897006EF090 /* Target */,
 				367FAFFC2CC4F077006EF090 /* DataStore */,
 				367FAFEA2CC3EF9B006EF090 /* Repository */,
 			);
@@ -530,6 +536,22 @@
 				367FB03F2CC789AC006EF090 /* AppErrorTests.swift */,
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		367FB0422CC79897006EF090 /* Target */ = {
+			isa = PBXGroup;
+			children = (
+				367FB0432CC798AD006EF090 /* ArtistTargetTests.swift */,
+			);
+			path = Target;
+			sourceTree = "<group>";
+		};
+		367FB0452CC79D12006EF090 /* Mapper */ = {
+			isa = PBXGroup;
+			children = (
+				367FB0462CC79D26006EF090 /* ArtistMapperTests.swift */,
+			);
+			path = Mapper;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -708,11 +730,13 @@
 				367FAFF12CC3F0AD006EF090 /* MockTarget.swift in Sources */,
 				367FAFEC2CC3EFCA006EF090 /* ArtistRepositoryImplTests.swift in Sources */,
 				367FAFAB2CC2C135006EF090 /* ArtistsTechnicalTestTests.swift in Sources */,
+				367FB0442CC798AD006EF090 /* ArtistTargetTests.swift in Sources */,
 				367FAFCD2CC2C93C006EF090 /* ServiceImplTests.swift in Sources */,
 				367FB0402CC789AC006EF090 /* AppErrorTests.swift in Sources */,
 				367FAFEF2CC3F039006EF090 /* MockURLProtocol.swift in Sources */,
 				367FB0002CC4F0A7006EF090 /* ArtistDataStoreImplTests.swift in Sources */,
 				367FAFF32CC3F0EC006EF090 /* MockDecodableType.swift in Sources */,
+				367FB0472CC79D26006EF090 /* ArtistMapperTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

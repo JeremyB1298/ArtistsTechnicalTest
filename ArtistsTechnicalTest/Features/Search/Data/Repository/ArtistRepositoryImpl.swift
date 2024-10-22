@@ -77,6 +77,7 @@ final class ArtistRepositoryImpl: ArtistRepository {
         dataStore.getSavedArtists()
     }
     
+    /// Resets the list of selected artists in the data store.
     func resetSelectedArtists() {
         dataStore.reset()
     }

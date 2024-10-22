@@ -5,6 +5,7 @@
 //  Created by Jeremy  Bailly  on 19/10/2024.
 //
 
+/// An enumeration defining the various targets for artist-related API requests.
 enum ArtistTarget {
     case search(query: String)
 }
@@ -19,7 +20,8 @@ extension ArtistTarget: TargetType {
     var path: String {
         switch self {
         case .search(let query):
-            return "/api/v1/artists/search?q={\(query)}"
+            let encodedQuery = query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
+            return "/api/v1/artists/search?q=\(encodedQuery)"
         }
     }
     
