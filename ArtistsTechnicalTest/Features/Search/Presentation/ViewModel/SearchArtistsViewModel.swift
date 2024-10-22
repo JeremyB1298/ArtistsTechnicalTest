@@ -132,12 +132,8 @@ final class SearchArtistsViewModelImpl: SearchArtistsViewModel {
     ///   - id: The ID of the artist to update.
     ///   - isSelected: The new selection status for the artist.
     func updateSelectStatus(for id: Int, with isSelected: Bool) {
-        switch searchState {
-        case .results:
-            updateSelectStatus(for: id, with: isSelected, artists: &searchArtists)
-        case .selected:
-            updateSelectStatus(for: id, with: isSelected, artists: &selectedArtists)
-        }
+        updateSelectStatus(for: id, with: isSelected, artists: &searchArtists)
+        updateSelectStatus(for: id, with: isSelected, artists: &selectedArtists)
         
         fetchSelectedArtists()
     }
