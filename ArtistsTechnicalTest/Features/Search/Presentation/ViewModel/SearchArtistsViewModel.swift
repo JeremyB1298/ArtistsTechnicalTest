@@ -89,10 +89,6 @@ final class SearchArtistsViewModelImpl: SearchArtistsViewModel {
     // MARK: - Public methods
     
     func search(query: String, _ completion: @escaping (Result<Void, AppError>) -> Void) {
-        guard query.count > 2 else {
-            searchArtists = []
-            return completion(.success(Void()))
-        }
         
         searchTimer?.cancel()
         

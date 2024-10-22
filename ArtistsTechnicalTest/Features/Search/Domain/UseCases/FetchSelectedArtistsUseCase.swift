@@ -7,12 +7,18 @@
 
 // MARK: - FetchSelectedArtistsUseCase
 
+/// A protocol defining the requirements for fetching selected artists.
+/// This protocol provides a method to retrieve an array of selected artists.
 protocol FetchSelectedArtistsUseCase {
+    /// Retrieves an array of selected artists.
+    /// - Returns: An array of `Artist`objects that have been selected.
     func invoke() -> [Artist]
 }
 
 // MARK: - FetchSelectedArtistsUseCaseImpl
 
+/// A final implementation of the `FetchSelectedArtistsUseCase`protocol.
+/// This class uses an `ArtistRepository`to fetch the selected artists from the data store.
 final class FetchSelectedArtistsUseCaseImpl: FetchSelectedArtistsUseCase {
     
     // MARK: - Private property
@@ -27,6 +33,8 @@ final class FetchSelectedArtistsUseCaseImpl: FetchSelectedArtistsUseCase {
     
     // MARK: - Public method
     
+    /// Retrieves an array of selected artists.
+    /// - Returns: An array of `Artist`objects that have been selected.
     func invoke() -> [Artist] {
         repository.fetchSelectedArtists()
     }
