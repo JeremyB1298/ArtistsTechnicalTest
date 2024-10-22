@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol SearchArtistsTableViewCell {
+protocol SearchArtistsTableViewCell: AnyObject {
     static var identifier: String { get }
     var delegate: SearchArtistsTableViewCellDelegate? { get set}
     func configure(model: ArtistUIModel)

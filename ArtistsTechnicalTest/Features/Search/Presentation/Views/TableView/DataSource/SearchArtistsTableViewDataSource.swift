@@ -38,7 +38,7 @@ final class SearchArtistsTableViewDataSourceImpl: NSObject, SearchArtistsTableVi
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard
-            var cell = tableView
+            let cell = tableView
                 .dequeueReusableCell(
                     withIdentifier: SearchArtistsTableViewCellImpl.identifier,
                     for: indexPath
