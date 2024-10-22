@@ -11,7 +11,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     // MARK: - Private property
     
-    private var appCoordinator: AppCoordinator!
+    private var appCoordinator: Coordinator!
     private let factory: Factory = FactoryImpl()
     
     // MARK: - Public property

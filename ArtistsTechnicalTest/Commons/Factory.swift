@@ -9,12 +9,16 @@ import UIKit
 
 // MARK: - Factory
 
+/// A protocol defining the requirements for a factory that creates view controllers.
 protocol Factory {
+    /// Creates and returns a new instance of the SearchArtistsViewController.
+    /// - Returns: An instance of UIViewController.
     func makeSearchArtistsViewController() -> UIViewController
 }
 
 // MARK: - FactoryImpl
 
+/// A final implementation of the Factory protocol.
 final class FactoryImpl: Factory {
     
     // MARK: - Private properties
@@ -41,6 +45,8 @@ final class FactoryImpl: Factory {
     
     // MARK: - Private methods
     
+    /// Creates and returns a new instance of the SearchArtistsViewController.
+    /// - Returns: An instance of UIViewController.
     private func makeSearchArtistsViewModel() -> SearchArtistsViewModel {
         let searchArtistsUseCase = makeSearchArtistsUseCase()
         let selectArtistUseCase = makeSelectArtistUseCase()

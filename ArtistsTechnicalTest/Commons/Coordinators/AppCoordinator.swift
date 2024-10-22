@@ -7,6 +7,7 @@
 
 import UIKit
 
+/// A coordinator responsible for managing the app's navigation flow.
 final class AppCoordinator: Coordinator {
     
     // MARK: - Private properties
@@ -26,6 +27,7 @@ final class AppCoordinator: Coordinator {
     
     // MARK: - Public method
     
+    /// Starts the coordinator by presenting the initial view controller.
     func start() {
         let viewController = factory.makeSearchArtistsViewController()
         navigationController.setNavigationBarHidden(true, animated: false)
