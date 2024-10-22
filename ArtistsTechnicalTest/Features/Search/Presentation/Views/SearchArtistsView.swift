@@ -9,6 +9,7 @@ import UIKit
 
 // MARK: - SearchArtistsViewDelegate
 
+/// A protocol defining the delegate methods for the search artists view.
 protocol SearchArtistsViewDelegate: AnyObject {
     func searchArtistsView(searchBarTextDidChange text: String)
     func searchArtistsViewDidSelectShow()
@@ -17,6 +18,7 @@ protocol SearchArtistsViewDelegate: AnyObject {
 
 // MARK: - SearchArtistsView
 
+/// A protocol defining the requirements for a search artists view.
 protocol SearchArtistsView {
     var delegate: SearchArtistsViewDelegate? { get set }
     func setDataSource(dataSource: UITableViewDataSource)
@@ -28,6 +30,8 @@ protocol SearchArtistsView {
 
 // MARK: - SearchArtistsViewImpl
 
+/// A final implementation of the SearchArtistsView protocol.
+/// This class represents the view for searching artists.
 final class SearchArtistsViewImpl: UIView, SearchArtistsView {
     
     // MARK: - Constants
@@ -88,23 +92,28 @@ final class SearchArtistsViewImpl: UIView, SearchArtistsView {
     
     // MARK: - Public method
     
+    /// Sets the data source for the table view.
     func setDataSource(dataSource: UITableViewDataSource) {
         tableView.dataSource = dataSource
     }
     
+    /// Reloads the table view data.
     func reloadData() {
         tableView.reloadData()
     }
     
+    /// Updates the show button with a title and enables or disables it.
     func updateShowButtonWith(title: String, isEnabled: Bool) {
         showButton.setTitle(title, for: .normal)
         showButton.isEnabled = isEnabled
     }
     
+    /// Updates the visibility of the reset button.
     func updateResetButton(isHidden: Bool) {
         resetButton.isHidden = isHidden
     }
     
+    /// Resets the search bar text.
     func resetSearchBar() {
         searchBar.text = nil
     }
@@ -119,6 +128,7 @@ final class SearchArtistsViewImpl: UIView, SearchArtistsView {
         delegate?.searchArtistsViewDidSelectShow()
     }
     
+    /// Sets up the views.
     private func setupViews() {
         addSubview(searchBar)
         addSubview(tableView)
@@ -126,6 +136,7 @@ final class SearchArtistsViewImpl: UIView, SearchArtistsView {
         addSubview(resetButton)
     }
     
+    /// Sets up the constraints for the views.
     private func makeConstraints() {
         makeSearchBarConstraints()
         makeShowButtonConstraints()
@@ -133,6 +144,7 @@ final class SearchArtistsViewImpl: UIView, SearchArtistsView {
         makeTableViewConstraints()
     }
     
+    /// Sets constraints for the search bar.
     private func makeSearchBarConstraints() {
         searchBar.translatesAutoresizingMaskIntoConstraints = false
         
@@ -145,6 +157,7 @@ final class SearchArtistsViewImpl: UIView, SearchArtistsView {
         )
     }
     
+    /// Sets constraints for the show button.
     private func makeShowButtonConstraints() {
         showButton.translatesAutoresizingMaskIntoConstraints = false
         
@@ -156,6 +169,7 @@ final class SearchArtistsViewImpl: UIView, SearchArtistsView {
         )
     }
     
+    /// Sets constraints for the reset button.
     private func makeResetButtonConstraints() {
         resetButton.translatesAutoresizingMaskIntoConstraints = false
         
@@ -168,6 +182,7 @@ final class SearchArtistsViewImpl: UIView, SearchArtistsView {
         )
     }
     
+    /// Sets constraints for the table view.
     private func makeTableViewConstraints() {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         

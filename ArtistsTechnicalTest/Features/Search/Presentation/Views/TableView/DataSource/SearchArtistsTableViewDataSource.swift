@@ -9,6 +9,8 @@ import UIKit
 
 // MARK: - SearchArtistsTableViewDataSource
 
+/// A protocol defining the requirements for the data source of the search artists table view.
+/// It extends the UITableViewDataSource protocol to include a delegate for cell selection.
 protocol SearchArtistsTableViewDataSource: UITableViewDataSource {
     var delegate: SearchArtistsTableViewCellDelegate? { get set}
     func update(with models: [ArtistUIModel])
@@ -16,6 +18,8 @@ protocol SearchArtistsTableViewDataSource: UITableViewDataSource {
 
 // MARK: - SearchArtistsTableViewDataSourceImpl
 
+/// A final implementation of the SearchArtistsTableViewDataSource protocol.
+/// This class manages the data for the search artists table view.
 final class SearchArtistsTableViewDataSourceImpl: NSObject, SearchArtistsTableViewDataSource {
     
     // MARK: - Private property
@@ -28,6 +32,8 @@ final class SearchArtistsTableViewDataSourceImpl: NSObject, SearchArtistsTableVi
     
     // MARK: - Public methods
     
+    /// Updates the data source with the provided artist models.
+    /// - Parameter models: An array of ArtistUIModel objects.
     func update(with models: [ArtistUIModel]) {
         self.models = models
     }
@@ -45,7 +51,7 @@ final class SearchArtistsTableViewDataSourceImpl: NSObject, SearchArtistsTableVi
                 )
                 as? (UITableViewCell & SearchArtistsTableViewCell)
         else {
-            return UITableViewCell()
+            fatalError("Failed to dequeue a cell with identifier: \(SearchArtistsTableViewCellImpl.identifier)")
         }
         
         let index = indexPath.row

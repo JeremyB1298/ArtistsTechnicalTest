@@ -187,7 +187,7 @@
 			children = (
 				367FAFA12CC2C135006EF090 /* Info.plist */,
 				367FB00B2CC52108006EF090 /* Resources */,
-				367FAFF42CC3F408006EF090 /* Common */,
+				367FAFF42CC3F408006EF090 /* Commons */,
 				367FAFC92CC2C545006EF090 /* Network */,
 				367FAFC82CC2C522006EF090 /* Delegates */,
 				367FAFC32CC2C4E5006EF090 /* Features */,
@@ -390,7 +390,7 @@
 			path = Mocks;
 			sourceTree = "<group>";
 		};
-		367FAFF42CC3F408006EF090 /* Common */ = {
+		367FAFF42CC3F408006EF090 /* Commons */ = {
 			isa = PBXGroup;
 			children = (
 				367FB00A2CC520F9006EF090 /* Coordinators */,
@@ -398,7 +398,7 @@
 				367FAFF72CC3F4D5006EF090 /* ErrorMapper.swift */,
 				367FB0102CC5221D006EF090 /* Factory.swift */,
 			);
-			path = Common;
+			path = Commons;
 			sourceTree = "<group>";
 		};
 		367FAFF92CC4EF3A006EF090 /* DataStore */ = {

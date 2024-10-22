@@ -7,6 +7,7 @@
 
 import UIKit
 
+/// A custom search bar for searching artists.
 final class SearchArtistsSearchBar: UISearchBar {
     
     // MARK: - Initializers
@@ -22,6 +23,7 @@ final class SearchArtistsSearchBar: UISearchBar {
     
     // MARK: - Private method
     
+    /// Sets up the search bar properties.
     private func setup() {
         placeholder = "Search an artist name..."
     }

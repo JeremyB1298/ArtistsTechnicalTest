@@ -7,6 +7,7 @@
 
 import UIKit
 
+/// A custom button for displaying the count of selected artists.
 final class SearchArtistsShowButton: UIButton {
     
     // MARK: - Initializers
@@ -22,6 +23,7 @@ final class SearchArtistsShowButton: UIButton {
     
     // MARK: - Private method
     
+    /// Sets up the button properties.
     private func setup() {
         setTitle("0 Selected", for: .normal)
         setTitleColor(.tintColor, for: .normal)

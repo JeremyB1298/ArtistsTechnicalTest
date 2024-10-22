@@ -7,6 +7,7 @@
 
 import UIKit
 
+/// A custom button for resetting the selection of artists.
 final class SearchArtistsResetButton: UIButton {
     
     // MARK: - Initializers
@@ -22,6 +23,7 @@ final class SearchArtistsResetButton: UIButton {
     
     // MARK: - Private method
     
+    /// Sets up the button properties.
     private func setup() {
         setTitle("Reset", for: .normal)
         setTitleColor(.tintColor, for: .normal)
