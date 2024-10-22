@@ -9,6 +9,7 @@ import Foundation
 
 // MARK: - Service
 
+/// A protocol defining the requirements for a service that handles network requests.
 protocol Service {
     func load<T: Decodable>(target: TargetType) async throws -> T
 }
@@ -62,7 +63,8 @@ final class ServiceImpl: Service {
         do {
             return try decoder.decode(T.self, from: data)
         } catch let error {
-            throw ServiceError.decodingError("Decoding error for \(T.self), with \(error)")
+            let dataString = String(data: data, encoding: .utf8) ?? "No data"
+            throw ServiceError.decodingError("Decoding error for \(T.self), with error: \(error), data: \(dataString)")
         }
     }
     

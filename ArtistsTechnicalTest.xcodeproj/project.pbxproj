@@ -54,6 +54,7 @@
 		367FB0372CC6920E006EF090 /* SearchArtistsSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367FB0362CC6920E006EF090 /* SearchArtistsSearchBar.swift */; };
 		367FB03B2CC6938C006EF090 /* SearchArtistsShowButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367FB03A2CC6938C006EF090 /* SearchArtistsShowButton.swift */; };
 		367FB03D2CC69406006EF090 /* SearchArtistsResetButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367FB03C2CC69406006EF090 /* SearchArtistsResetButton.swift */; };
+		367FB0402CC789AC006EF090 /* AppErrorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367FB03F2CC789AC006EF090 /* AppErrorTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -125,6 +126,7 @@
 		367FB0362CC6920E006EF090 /* SearchArtistsSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchArtistsSearchBar.swift; sourceTree = "<group>"; };
 		367FB03A2CC6938C006EF090 /* SearchArtistsShowButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchArtistsShowButton.swift; sourceTree = "<group>"; };
 		367FB03C2CC69406006EF090 /* SearchArtistsResetButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchArtistsResetButton.swift; sourceTree = "<group>"; };
+		367FB03F2CC789AC006EF090 /* AppErrorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppErrorTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -188,6 +190,7 @@
 		367FAFA92CC2C135006EF090 /* ArtistsTechnicalTestTests */ = {
 			isa = PBXGroup;
 			children = (
+				367FB03E2CC7899B006EF090 /* Common */,
 				367FAFED2CC3F024006EF090 /* Mocks */,
 				367FAFE72CC3EF8A006EF090 /* Features */,
 				367FAFDD2CC3E112006EF090 /* Network */,
@@ -521,6 +524,14 @@
 			path = Buttons;
 			sourceTree = "<group>";
 		};
+		367FB03E2CC7899B006EF090 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				367FB03F2CC789AC006EF090 /* AppErrorTests.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -698,6 +709,7 @@
 				367FAFEC2CC3EFCA006EF090 /* ArtistRepositoryImplTests.swift in Sources */,
 				367FAFAB2CC2C135006EF090 /* ArtistsTechnicalTestTests.swift in Sources */,
 				367FAFCD2CC2C93C006EF090 /* ServiceImplTests.swift in Sources */,
+				367FB0402CC789AC006EF090 /* AppErrorTests.swift in Sources */,
 				367FAFEF2CC3F039006EF090 /* MockURLProtocol.swift in Sources */,
 				367FB0002CC4F0A7006EF090 /* ArtistDataStoreImplTests.swift in Sources */,
 				367FAFF32CC3F0EC006EF090 /* MockDecodableType.swift in Sources */,

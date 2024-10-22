@@ -61,6 +61,7 @@ final class ServiceImplTests: XCTestCase {
         
         MockURLProtocol.requestHandler = { request in
             let url = request.url!
+            XCTAssertEqual(url.absoluteString, "https://example.com/data")
             let response = HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil)!
             return (response, invalidJsonData)
         }
@@ -72,6 +73,56 @@ final class ServiceImplTests: XCTestCase {
             switch error {
             case .decodingError:
                 break
+            default:
+                XCTFail("Expected decoding error, but got different error => \(error)")
+            }
+        } catch {
+            XCTFail("Expected ServiceError, but got different error: \(error)")
+        }
+    }
+    
+    /// Tests the `load` method of the service when the url is invalid.
+    func test_fetch_with_bad_url() async {
+        let mockTarget = MockTarget(baseURL: "§§6732", path: "///m")
+        
+        MockURLProtocol.requestHandler = { _ in
+            throw URLError(.badURL)
+        }
+        
+        do {
+            let _: MockDecodableType = try await sut.load(target: mockTarget)
+            XCTFail("Expected decoding error, but the call succeeded.")
+        } catch let error as ServiceError {
+            switch error {
+            case .networkError:
+                break
+            default:
+                XCTFail("Expected decoding error, but got different error => \(error)")
+            }
+        } catch {
+            XCTFail("Expected ServiceError, but got different error: \(error)")
+        }
+    }
+    
+    /// Tests the `load` method of the service when the status code is invalid.
+    func test_fetch_with_invalid_status_code() async {
+        let mockTarget = MockTarget(baseURL: "https://example.com", path: "/data")
+        let invalidJsonData = "{ invalid json }".data(using: .utf8)!
+        
+        MockURLProtocol.requestHandler = { request in
+            let url = request.url!
+            XCTAssertEqual(url.absoluteString, "https://example.com/data")
+            let response = HTTPURLResponse(url: url, statusCode: 410, httpVersion: nil, headerFields: nil)!
+            return (response, invalidJsonData)
+        }
+        
+        do {
+            let _: MockDecodableType = try await sut.load(target: mockTarget)
+            XCTFail("Expected decoding error, but the call succeeded.")
+        } catch let error as ServiceError {
+            switch error {
+            case .badResponse(let statusCode):
+                XCTAssertEqual(statusCode, 410)
             default:
                 XCTFail("Expected decoding error, but got different error => \(error)")
             }

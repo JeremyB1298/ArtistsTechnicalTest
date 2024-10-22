@@ -12,4 +12,29 @@ enum AppError: Error {
     case badResponse(String)
     case decodingError(String)
     case networkError(String)
+    
+    var localizationDescription: String {
+        switch self {
+        case .invalidURL(let string):
+            return """
+            An error occurred on the network called due to invalid url:
+            \(string)
+            """
+        case .badResponse(let string):
+            return """
+            An error occurred on the network called due bad response:
+            Status \(string)
+            """
+        case .decodingError(let string):
+            return """
+            An error occurred on the network called due bad decoding:
+            \(string)
+            """
+        case .networkError(let string):
+            return """
+            An error occurred on the network called:
+            \(string)
+            """
+        }
+    }
 }

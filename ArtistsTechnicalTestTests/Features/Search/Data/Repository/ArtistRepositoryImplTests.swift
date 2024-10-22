@@ -119,7 +119,7 @@ final class ArtistRepositoryImplTests: XCTestCase {
     func test_unselect_and_unregister() {
         let artist = Artist(id: 0, title: "My artist", isSelected: true)
         
-        let artistUpdated = sut.unselectAndUnregister(artist: artist)
+        let artistUpdated = sut.deselectAndUnregister(artist: artist)
         
         XCTAssertEqual(artist.id, artistUpdated.id)
         XCTAssertEqual(artist.title, artistUpdated.title)
