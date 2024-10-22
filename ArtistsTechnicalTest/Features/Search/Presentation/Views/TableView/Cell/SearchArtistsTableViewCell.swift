@@ -7,20 +7,26 @@
 
 import UIKit
 
+/// A protocol defining the requirements for a search artist table view cell.
 protocol SearchArtistsTableViewCell: AnyObject {
     static var identifier: String { get }
     var delegate: SearchArtistsTableViewCellDelegate? { get set}
+    
+    /// Configures the cell with an artist model.
+    /// - Parameter model: The artist model to configure the cell.
     func configure(model: ArtistUIModel)
 }
 
 // MARK: - SearchArtistsTableViewCellDelegate
 
+/// A protocol for handling selection events in the search artists cell.
 protocol SearchArtistsTableViewCellDelegate: AnyObject {
     func searchArtistsTableViewCell(didSelect id: Int, isSelected: Bool)
 }
 
 // MARK: - SearchArtistsTableViewCell
 
+/// A final implementation of the SearchArtistsTableViewCell protocol.
 final class SearchArtistsTableViewCellImpl: UITableViewCell, SearchArtistsTableViewCell {
     
     // MARK: - Constants
@@ -65,6 +71,8 @@ final class SearchArtistsTableViewCellImpl: UITableViewCell, SearchArtistsTableV
     
     // MARK: - Public method
     
+    /// Configures the cell with an artist model.
+    /// - Parameter model: The artist model to configure the cell.
     func configure(model: ArtistUIModel) {
         let id = model.id
         artistId = id
@@ -83,14 +91,17 @@ final class SearchArtistsTableViewCellImpl: UITableViewCell, SearchArtistsTableV
     
     // MARK: - Private methods
     
+    /// Sets up UI properties for the cell.
     private func setupUI() {
         selectionStyle = .none
     }
     
+    /// Adds subviews to the cell's content view.
     private func setupViews() {
         contentView.addSubview(searchArtistsTableViewCellView)
     }
     
+    /// Configures layout constraints for the subviews.
     private func makeConstraints() {
         searchArtistsTableViewCellView.translatesAutoresizingMaskIntoConstraints = false
         
