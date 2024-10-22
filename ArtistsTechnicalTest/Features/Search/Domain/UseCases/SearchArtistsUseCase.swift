@@ -40,10 +40,7 @@ final class SearchArtistsUseCaseImpl: SearchArtistsUseCase {
     /// - Returns: An array of `Artist`objects matching the query.
     /// - Throws: An error if search fails.
     func invoke(query: String) async throws -> [Artist] {
-        guard query.count > 2 else {
-            return []
-        }
-        return try await repository.fetch(query: query)
+        try await repository.fetch(query: query)
     }
     
 }

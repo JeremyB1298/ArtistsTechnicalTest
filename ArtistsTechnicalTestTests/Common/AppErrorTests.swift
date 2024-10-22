@@ -83,7 +83,7 @@ final class AppErrorTests: XCTestCase {
             localizationDescription,
             """
             An internal error occured:
-                    internal error
+            internal error
             """
         )
     }

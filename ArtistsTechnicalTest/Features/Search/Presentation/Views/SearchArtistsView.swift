@@ -191,4 +191,8 @@ extension SearchArtistsViewImpl: UISearchBarDelegate {
         delegate?.searchArtistsView(searchBarTextDidChange: searchText)
     }
     
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+    }
+    
 }

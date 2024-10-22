@@ -61,7 +61,8 @@ final class SearchArtistsViewModelImpl: SearchArtistsViewModel {
     private var searchArtists: [Artist] = []
     private var selectedArtists: [Artist] = []
     private var searchTimer: AnyCancellable?
-    private let searchRequestDelay = 300
+    private let searchRequestDelay = 500
+    private let minQueryLength = 3
     
     // MARK: - Public property
     
@@ -113,6 +114,11 @@ final class SearchArtistsViewModelImpl: SearchArtistsViewModel {
     func search(query: String, _ completion: @escaping (Result<Void, AppError>) -> Void) {
         
         searchTimer?.cancel()
+        
+        guard query.count >= minQueryLength else {
+            searchArtists = []
+            return completion(.success(Void()))
+        }
         
         searchTimer = Just(query)
             .delay(for: .milliseconds(searchRequestDelay), scheduler: RunLoop.main)
