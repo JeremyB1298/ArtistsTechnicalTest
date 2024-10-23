@@ -11,26 +11,43 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     // MARK: - Private property
     
+    /// The main coordinator responsible for navigating through the app's scenes.
     private var appCoordinator: Coordinator!
+    
+    /// A factory instance used to create various components in the app.
     private let factory: Factory = FactoryImpl()
     
     // MARK: - Public property
     
+    /// The main window for the app, used for displaying the UI.
     var window: UIWindow?
     
     // MARK: - Public methods
     
+    
+    /// Called when the scene is about to connect to the app's session.
+    /// This method sets up the window and its root view controller.
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+        
+        // Ensure the scene is a UIWindowScene
         guard let windowScene = scene as? UIWindowScene else { return }
         
+        // Create a new window with the provided windowScene
         window = UIWindow(windowScene: windowScene)
         
+        // Create a navigation controller to manage the app's navigation stack
         let navigationController = UINavigationController()
         
+        // Set the navigation controller as the root view controller of the window
         window?.rootViewController = navigationController
+        
+        // Make the window visible and key
         window?.makeKeyAndVisible()
         
+        // Initialize the app coordinator with the navigation controller and factory
         appCoordinator = AppCoordinator(navigationController: navigationController, factory: factory)
+        
+        // Start the app coordinator to begin navigation
         appCoordinator.start()
     }
     
