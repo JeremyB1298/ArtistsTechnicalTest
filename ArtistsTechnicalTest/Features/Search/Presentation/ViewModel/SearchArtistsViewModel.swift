@@ -52,7 +52,7 @@ final class SearchArtistsViewModelImpl: SearchArtistsViewModel {
     
     // MARK: - Private properties
     
-    private let searchArtistsUseCase: SearchArtistsUseCase
+    private let searchArtistsUseCase: SearchArtistsUseCase & QueryValidator
     private let selectArtistUseCase: SelectArtistUseCase
     private let deselectArtistUseCase: DeselectArtistUseCase
     private let fetchSelectedArtistsUseCase: FetchSelectedArtistsUseCase
@@ -62,7 +62,6 @@ final class SearchArtistsViewModelImpl: SearchArtistsViewModel {
     private var selectedArtists: [Artist] = []
     private var searchTimer: AnyCancellable?
     private let searchRequestDelay = 500
-    private let minQueryLength = 3
     
     // MARK: - Public property
     
@@ -90,7 +89,7 @@ final class SearchArtistsViewModelImpl: SearchArtistsViewModel {
     // MARK: - Initializer
     
     init(
-        searchArtistsUseCase: SearchArtistsUseCase,
+        searchArtistsUseCase: SearchArtistsUseCase & QueryValidator,
         mapper: ArtistUIMapper,
         selectArtistUseCase: SelectArtistUseCase,
         deselectArtistUseCase: DeselectArtistUseCase,
@@ -115,7 +114,7 @@ final class SearchArtistsViewModelImpl: SearchArtistsViewModel {
         
         searchTimer?.cancel()
         
-        guard query.count >= minQueryLength else {
+        guard searchArtistsUseCase.isValid(query: query) else {
             searchArtists = []
             return completion(.success(Void()))
         }

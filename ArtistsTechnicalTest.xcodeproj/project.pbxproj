@@ -59,6 +59,8 @@
 		367FB0472CC79D26006EF090 /* ArtistMapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367FB0462CC79D26006EF090 /* ArtistMapperTests.swift */; };
 		367FB04F2CC7C241006EF090 /* ArtistUIMapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367FB04E2CC7C241006EF090 /* ArtistUIMapperTests.swift */; };
 		367FB0522CC7CA87006EF090 /* SearchArtistsViewModelImplTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367FB0512CC7CA87006EF090 /* SearchArtistsViewModelImplTests.swift */; };
+		36DF4FF92CC8D07F00611D21 /* SearchArtistsUseCaseImplTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36DF4FF82CC8D07F00611D21 /* SearchArtistsUseCaseImplTests.swift */; };
+		36DF4FFB2CC8D12300611D21 /* MockArtistRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36DF4FFA2CC8D12300611D21 /* MockArtistRepositoryImpl.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -135,6 +137,8 @@
 		367FB0462CC79D26006EF090 /* ArtistMapperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistMapperTests.swift; sourceTree = "<group>"; };
 		367FB04E2CC7C241006EF090 /* ArtistUIMapperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistUIMapperTests.swift; sourceTree = "<group>"; };
 		367FB0512CC7CA87006EF090 /* SearchArtistsViewModelImplTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchArtistsViewModelImplTests.swift; sourceTree = "<group>"; };
+		36DF4FF82CC8D07F00611D21 /* SearchArtistsUseCaseImplTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchArtistsUseCaseImplTests.swift; sourceTree = "<group>"; };
+		36DF4FFA2CC8D12300611D21 /* MockArtistRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockArtistRepositoryImpl.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -356,6 +360,7 @@
 			isa = PBXGroup;
 			children = (
 				367FB04C2CC7C22C006EF090 /* Presentation */,
+				36DF4FF72CC8D02400611D21 /* Domain */,
 				367FAFE92CC3EF97006EF090 /* Data */,
 			);
 			path = Search;
@@ -386,6 +391,7 @@
 				367FAFEE2CC3F039006EF090 /* MockURLProtocol.swift */,
 				367FAFF02CC3F0AD006EF090 /* MockTarget.swift */,
 				367FAFF22CC3F0EC006EF090 /* MockDecodableType.swift */,
+				36DF4FFA2CC8D12300611D21 /* MockArtistRepositoryImpl.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -584,6 +590,14 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		36DF4FF72CC8D02400611D21 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				36DF4FF82CC8D07F00611D21 /* SearchArtistsUseCaseImplTests.swift */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -758,6 +772,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				367FAFF12CC3F0AD006EF090 /* MockTarget.swift in Sources */,
+				36DF4FF92CC8D07F00611D21 /* SearchArtistsUseCaseImplTests.swift in Sources */,
+				36DF4FFB2CC8D12300611D21 /* MockArtistRepositoryImpl.swift in Sources */,
 				367FB0522CC7CA87006EF090 /* SearchArtistsViewModelImplTests.swift in Sources */,
 				367FAFEC2CC3EFCA006EF090 /* ArtistRepositoryImplTests.swift in Sources */,
 				367FAFAB2CC2C135006EF090 /* ArtistsTechnicalTestTests.swift in Sources */,
@@ -941,6 +957,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -968,6 +985,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

@@ -48,7 +48,7 @@ final class FactoryImpl: Factory {
     /// Creates and returns a new instance of the SearchArtistsViewController.
     /// - Returns: An instance of UIViewController.
     private func makeSearchArtistsViewModel() -> SearchArtistsViewModel {
-        let searchArtistsUseCase = makeSearchArtistsUseCase()
+        let searchArtistsUseCase = makeSearchArtistsUseCaseQueryValidator()
         let selectArtistUseCase = makeSelectArtistUseCase()
         let deselectArtistUseCase = makeDeselectArtistUseCase()
         let fetchSelectedArtistsUseCase = makeFetchSelectedArtistsUseCase()
@@ -64,7 +64,7 @@ final class FactoryImpl: Factory {
         )
     }
     
-    private func makeSearchArtistsUseCase() -> SearchArtistsUseCase {
+    private func makeSearchArtistsUseCaseQueryValidator() -> SearchArtistsUseCase & QueryValidator {
         SearchArtistsUseCaseImpl(repository: artistRepository)
     }
     

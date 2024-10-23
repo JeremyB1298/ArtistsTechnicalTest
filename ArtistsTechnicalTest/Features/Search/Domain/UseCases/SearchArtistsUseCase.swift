@@ -5,6 +5,16 @@
 //  Created by Jeremy  Bailly  on 20/10/2024.
 //
 
+// MARK: - QueryValidator
+
+/// A protocol defining the requirements for validating search queries.
+protocol QueryValidator {
+    /// Validates the search query.
+    /// - Parameter query: The search query to validate.
+    /// - Returns: A Boolean indicating whether the query is valid.
+    func isValid(query: String) -> Bool
+}
+
 // MARK: - SearchArtistsUseCase
 
 /// A protocol defining the requirements for searching artists.
@@ -40,7 +50,23 @@ final class SearchArtistsUseCaseImpl: SearchArtistsUseCase {
     /// - Returns: An array of `Artist`objects matching the query.
     /// - Throws: An error if search fails.
     func invoke(query: String) async throws -> [Artist] {
-        try await repository.fetch(query: query)
+        guard isValid(query: query) else {
+            return []
+        }
+        return try await repository.fetch(query: query)
+    }
+    
+}
+
+// MARK: - QueryValidator
+
+extension SearchArtistsUseCaseImpl: QueryValidator {
+    
+    /// Validates the search query.
+    /// - Parameter query: The search query to validate.
+    /// - Returns: A Boolean indicating whether the query is valid.
+    func isValid(query: String) -> Bool {
+        return query.count >= 3
     }
     
 }
