@@ -311,6 +311,15 @@ extension SearchArtistsViewController: SearchArtistsTableViewCellDelegate {
         // Update selection status in the view model
         viewModel.updateSelectStatus(for: id, with: isSelected)
         
+        // If the search state is currently selected and the artist list is empty, switch back to results
+        if
+            viewModel.searchState == .selected,
+            viewModel.uiArtists.isEmpty 
+        {
+            // Switch the state to results
+            viewModel.switchSearchState()
+        }
+        
         // Reload the UI to reflect changes
         reloadUIWithCurrentState()
     }
