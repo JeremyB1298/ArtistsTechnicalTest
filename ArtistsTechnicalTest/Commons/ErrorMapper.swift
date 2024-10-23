@@ -15,12 +15,20 @@ struct ErrorMapper {
     func map(serviceError: ServiceError) -> AppError {
         switch serviceError {
         case .invalidURL(let string):
+            
+            // Map invalid URL error
             return AppError.invalidURL(string)
         case .badResponse(let int):
+            
+            // Map bad response error, converting status code to string
             return AppError.badResponse("\(int)")
         case .decodingError(let string):
+            
+            // Map decoding error
             return AppError.decodingError(string)
         case .networkError(let string):
+            
+            // Map network error
             return AppError.networkError(string)
         }
     }
