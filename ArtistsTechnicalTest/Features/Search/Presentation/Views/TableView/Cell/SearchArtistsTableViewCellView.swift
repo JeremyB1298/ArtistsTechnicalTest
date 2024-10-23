@@ -174,7 +174,7 @@ final class SearchArtistsTableViewCellViewImpl: UIView, SearchArtistsTableViewCe
     private func setupUI() {
         
         // Set the initial background color
-        backgroundColor = .systemGray5
+        backgroundColor = UIColor(resource: .backgroundGray)
         
         // Set the corner radius
         layer.cornerRadius = Constants.View.cornerRadius
