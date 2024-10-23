@@ -23,10 +23,13 @@ final class FetchSelectedArtistsUseCaseImpl: FetchSelectedArtistsUseCase {
     
     // MARK: - Private property
     
+    /// The repository used for accessing artist data.
     private let repository: ArtistRepository
     
     // MARK: - Initializer
     
+    /// Initializes the use case with a given artist repository.
+    /// - Parameter repository: The `ArtistRepository` used to fetch selected artists.
     init(repository: ArtistRepository) {
         self.repository = repository
     }
@@ -36,6 +39,8 @@ final class FetchSelectedArtistsUseCaseImpl: FetchSelectedArtistsUseCase {
     /// Retrieves an array of selected artists.
     /// - Returns: An array of `Artist`objects that have been selected.
     func invoke() -> [Artist] {
+        
+        // Fetch and return the selected artists from the repository
         repository.fetchSelectedArtists()
     }
     

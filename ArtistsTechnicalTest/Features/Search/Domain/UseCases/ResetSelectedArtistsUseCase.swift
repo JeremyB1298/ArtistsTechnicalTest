@@ -23,10 +23,13 @@ final class ResetSelectedArtistsUseCaseImpl: ResetSelectedArtistsUseCase {
     
     // MARK: - Private property
     
+    /// The repository used for managing artist data.
     private let repository: ArtistRepository
     
     // MARK: - Initializer
     
+    /// Initializes the use case with a given artist repository.
+    /// - Parameter repository: The `ArtistRepository` used for resetting selected artists.
     init(repository: ArtistRepository) {
         self.repository = repository
     }
@@ -35,6 +38,8 @@ final class ResetSelectedArtistsUseCaseImpl: ResetSelectedArtistsUseCase {
     
     /// Reset the selection of artists.
     func invoke() {
+        
+        // Clear the selection of all artists in the repository
         repository.resetSelectedArtists()
     }
     

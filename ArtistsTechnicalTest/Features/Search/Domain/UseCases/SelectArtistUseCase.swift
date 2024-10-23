@@ -24,10 +24,13 @@ final class SelectArtistUseCaseImpl: SelectArtistUseCase {
     
     // MARK: - Private property
     
+    /// The repository used for managing artist data.
     private let repository: ArtistRepository
     
     // MARK: - Initializer
     
+    /// Initializes the use case with a given artist repository.
+    /// - Parameter repository: The `ArtistRepository` used for selecting and saving artists.
     init(repository: ArtistRepository) {
         self.repository = repository
     }
@@ -38,6 +41,8 @@ final class SelectArtistUseCaseImpl: SelectArtistUseCase {
     /// - Parameter artist: The `Artist`object to be selected and saved.
     /// - Returns: The updated `Artist`object with the selection status.
     func invoke(artist: Artist) -> Artist {
+        
+        // Save the selected artist using the repository and return the updated artist
         repository.selectAndSave(artist: artist)
     }
     
