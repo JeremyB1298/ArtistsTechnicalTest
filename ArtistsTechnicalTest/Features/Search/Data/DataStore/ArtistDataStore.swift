@@ -40,6 +40,7 @@ final class ArtistDataStoreImpl: ArtistDataStore {
     
     // MARK: - Private property
     
+    /// An array that holds all saved artists.
     private var artistsSaved: [Artist] = []
     
     // MARK: - Public methods
@@ -48,30 +49,36 @@ final class ArtistDataStoreImpl: ArtistDataStore {
     /// - Parameter artist: The artist to be saved.
     /// - Returns: The saved artist object.
     func saveArtist(artist: Artist) -> Artist {
+        // Add the artist to the saved artists array
         artistsSaved.append(artist)
+        // Return the saved artist
         return artist
     }
     
     /// Removes an artist from the data store by its identifier
     /// - Parameter id: The identifier of the artist to be removed.
     func removeArtist(id: Int) {
+        // Remove all artists with the matching ID
         artistsSaved.removeAll(where: { $0.id == id })
     }
     
     /// Retrieves an array of saved artist identifiers.
     /// - Returns: An array of integers representing the IDs of saved artists.
     func getSavedArtistIds() -> [Int] {
+        // Map the saved artists to their IDs
         artistsSaved.map({ $0.id })
     }
     
     /// Retrieves an array of all saved artists from the data store.
     /// - Returns: An array of `Artist`objects that have been saved.
     func getSavedArtists() -> [Artist] {
+        // Return the array of saved artists
         artistsSaved
     }
     
     /// Resets the data store, clearing all saved artists.
     func reset() {
+        // Clear all saved artists
         artistsSaved.removeAll()
     }
     
