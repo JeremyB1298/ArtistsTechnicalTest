@@ -12,8 +12,12 @@ final class SearchArtistsSearchBar: UISearchBar {
     
     // MARK: - Initializers
     
+    /// Initializes a new instance of `SearchArtistsSearchBar`.
+    /// This initializer sets up the search bar with the default properties.
     init() {
         super.init(frame: .zero)
+        
+        // Call the setup method to configure search bar properties
         setup()
     }
     
@@ -24,7 +28,10 @@ final class SearchArtistsSearchBar: UISearchBar {
     // MARK: - Private method
     
     /// Sets up the search bar properties.
+    /// This method configures the placeholder text for the search bar to guide users on its functionality.
     private func setup() {
+        
+        // Set the placeholder text for the search bar
         placeholder = "Search an artist name..."
     }
     

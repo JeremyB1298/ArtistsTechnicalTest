@@ -11,8 +11,13 @@ import UIKit
 
 /// A protocol defining the requirements for the data source of the search artists table view.
 /// It extends the UITableViewDataSource protocol to include a delegate for cell selection.
-protocol SearchArtistsTableViewDataSource: UITableViewDataSource {
+protocol SearchArtistsTableViewDataSource {
+    
+    /// A delegate that receives events related to cell selection.
     var delegate: SearchArtistsTableViewCellDelegate? { get set}
+    
+    /// Updates the data source with the provided artist models.
+    /// - Parameter models: An array of `ArtistUIModel` objects to be displayed in the table view.
     func update(with models: [ArtistUIModel])
 }
 
@@ -24,24 +29,36 @@ final class SearchArtistsTableViewDataSourceImpl: NSObject, SearchArtistsTableVi
     
     // MARK: - Private property
     
+    /// The array of artist models used as the data source for the table view.
     private var models: [ArtistUIModel] = []
     
     // MARK: - Public property
     
+    /// A weak reference to the delegate that handles cell selection events.
     weak var delegate: SearchArtistsTableViewCellDelegate?
     
     // MARK: - Public methods
     
     /// Updates the data source with the provided artist models.
-    /// - Parameter models: An array of ArtistUIModel objects.
+    /// - Parameter models: An array of `ArtistUIModel` objects to be displayed in the table view.
     func update(with models: [ArtistUIModel]) {
         self.models = models
     }
     
+}
+
+// MARK: - UITableViewDataSource
+
+extension SearchArtistsTableViewDataSourceImpl: UITableViewDataSource {
+    
+    /// Returns the number of rows in the specified section of the table view.
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        // Return the count of artist models
         models.count
     }
     
+    /// Provides a cell object for the specified row in the table view.
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard
             let cell = tableView
@@ -55,10 +72,17 @@ final class SearchArtistsTableViewDataSourceImpl: NSObject, SearchArtistsTableVi
         }
         
         let index = indexPath.row
+        
+        // Retrieve the model for the current row
         let model = models[index]
+        
+        // Configure the cell with the artist model
         cell.configure(model: model)
+        
+        // Assign the delegate to handle cell selection
         cell.delegate = delegate
         
+        // Return the configured cell
         return cell
     }
     

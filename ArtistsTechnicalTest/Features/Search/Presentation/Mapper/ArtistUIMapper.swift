@@ -14,10 +14,12 @@ struct ArtistUIMapper {
     /// - Returns: An `ArtistUIModel` object mapped from the provided domain artist.
     func map(artist: Artist) -> ArtistUIModel {
         
+        // Extract properties from the domain Artist
         let id = artist.id
         let title = artist.title
         let isSelected = artist.isSelected
         
+        // Create and return the UI model
         return ArtistUIModel(
             id: id,
             title: title,
@@ -30,10 +32,12 @@ struct ArtistUIMapper {
     /// - Returns: An `Artist` object mapped from the provided UI model.
     func map(artistUIModel: ArtistUIModel) -> Artist {
         
+        // Extract properties from the UI model
         let id = artistUIModel.id
         let title = artistUIModel.title
         let isSelected = artistUIModel.isSelected
         
+        // Create and return the domain model
         return Artist(
             id: id,
             title: title,
