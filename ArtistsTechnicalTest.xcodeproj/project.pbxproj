@@ -593,9 +593,17 @@
 		36DF4FF72CC8D02400611D21 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
-				36DF4FF82CC8D07F00611D21 /* SearchArtistsUseCaseImplTests.swift */,
+				36DF4FFC2CC8FF0C00611D21 /* UseCase */,
 			);
 			path = Domain;
+			sourceTree = "<group>";
+		};
+		36DF4FFC2CC8FF0C00611D21 /* UseCase */ = {
+			isa = PBXGroup;
+			children = (
+				36DF4FF82CC8D07F00611D21 /* SearchArtistsUseCaseImplTests.swift */,
+			);
+			path = UseCase;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
