@@ -64,3 +64,6 @@ During the development process, I encountered several challenges:
 ## Conclusion
 
 This project showcases my ability to design a robust application architecture while applying best practices in software development. The decisions made during development were guided by principles aimed at creating a maintainable and scalable codebase.
+
+## Known Issues ⚠️
+UISearchBar Keyboard Functionality: There is a known issue with the UISearchBar on devices running iOS 17.2, particularly on the iPhone 15. Users may experience a problem where the keyboard does not appear when interacting with the UISearchBar. This issue arises from a long click on the UISearchBar field, which is acknowledged as a bug on Apple's side. For more details, you can refer to the discussion on [the Apple Developer Forums](https://forums.developer.apple.com/forums/thread/738726). Please note that this can potentially lead to a sensitive crash, and I recommend monitoring updates from Apple for a resolution.
